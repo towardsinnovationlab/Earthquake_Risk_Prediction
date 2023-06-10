@@ -10,7 +10,9 @@ Data have been cleaned into homogeneous magnitude type and having more consisten
 and time horizon.
 
 Columns (index not considered): from 9 to 5
+
 Rows: from 10188 to 9116
+
 Time horizion: from 1979-2020 to 1980-2009
 
 ### Data Description
