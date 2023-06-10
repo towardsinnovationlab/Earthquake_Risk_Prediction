@@ -1,6 +1,7 @@
 import streamlit as st
+import gradio as gr
 
-st.write("# Welcome to the Earthquakes Risk Modelling with Quantile Approach Web App! 👋")
+sr.write("# Welcome to the Earthquakes Risk Modelling with Quantile Approach Web App! 👋")
 
 
-st.image("./images/natural-disaster.png", width=500)
+sr.image("./images/natural-disaster.png", width=500)
