@@ -7,4 +7,4 @@ st.markdown("""
         )
 
 
-st.image("./images/natural-disaster.png", width=500, pixabay)
+st.image("./images/natural-disaster.png", width=500)
