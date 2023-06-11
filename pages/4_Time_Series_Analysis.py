@@ -86,40 +86,40 @@ tsplot(df4, var='mag', period='all')
 daily_data = df4.groupby(pd.Grouper(freq='D')).agg({'mag': 'mean'})
 daily_data_ = daily_data.dropna()
 
-# Additive Decomposition
-#add_res = seasonal_decompose(x=daily_data_['mag'], model="additive", period=30)
-#plt.rcParams['figure.figsize']=(20,20)
-#fig = plt.figure()
-#add_res.plot()
-#plt.xlabel('Time', fontsize=20)
-#plt.yticks(rotation=0)
-#plt.xticks(rotation=45, fontsize=20)
-#st.pyplot(fig)
+st.subheader("Additive Decomposition")
 
 # Additive Decomposition
 add_res = seasonal_decompose(x=daily_data_['mag'], model="additive", period=30)
 # Plot the components
 fig, (ax1, ax2, ax3, ax4) = plt.subplots(4, 1, figsize=(15, 8))
+plt.xlabel('Time', fontsize=15)
 add_res.observed.plot(ax=ax1)
-ax1.set_ylabel('Observed')
+ax1.set_ylabel('Observed',fontsize=15)
 add_res.trend.plot(ax=ax2)
-ax2.set_ylabel('Trend')
+ax2.set_ylabel('Trend',fontsize=15)
 add_res.seasonal.plot(ax=ax3)
-ax3.set_ylabel('Seasonal')
+ax3.set_ylabel('Seasonal',fontsize=15)
 add_res.resid.plot(ax=ax4)
-ax4.set_ylabel('Residual')
+ax4.set_ylabel('Residual',fontsize=15)
 # Display the plot on Streamlit
 st.pyplot(fig)
 
+st.subheader("Multiplicative Decomposition")
 
-# Multiplicative Decomposition 
-mul_res = seasonal_decompose(x=daily_data_['mag'], model="multiplicative", period=30)
-plt.rcParams['figure.figsize']=(20,20)
-fig = plt.figure()
-mul_res.plot()
-plt.xlabel('Time', fontsize=20)
-plt.yticks(rotation=0)
-plt.xticks(rotation=45, fontsize=20)
+# Multiplicative Decomposition
+add_res = seasonal_decompose(x=daily_data_['mag'], model="multiplicative", period=30)
+# Plot the components
+fig, (ax1, ax2, ax3, ax4) = plt.subplots(4, 1, figsize=(15, 8))
+plt.xlabel('Time', fontsize=15)
+add_res.observed.plot(ax=ax1)
+ax1.set_ylabel('Observed',fontsize=15)
+add_res.trend.plot(ax=ax2)
+ax2.set_ylabel('Trend',fontsize=15)
+add_res.seasonal.plot(ax=ax3)
+ax3.set_ylabel('Seasonal',fontsize=15)
+add_res.resid.plot(ax=ax4)
+ax4.set_ylabel('Residual',fontsize=15)
+# Display the plot on Streamlit
 st.pyplot(fig)
 
 # Create window features for rolling window
