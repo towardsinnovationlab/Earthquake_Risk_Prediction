@@ -3,8 +3,9 @@ numpy
 pandas
 matplotlib
 seaborn
+feature_engine
 plotly.express
 datetime
 scipy
 statsmodels
-feature_engine
+
