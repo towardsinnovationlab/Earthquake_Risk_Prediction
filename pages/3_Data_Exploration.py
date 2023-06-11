@@ -7,6 +7,8 @@ import seaborn as sns
 import plotly.express as px
 import datetime
 from pandas.plotting import autocorrelation_plot
+import scipy
+import scipy.stats as stats
 
 
 import warnings
@@ -53,10 +55,6 @@ st.write('Numerical Variables')
 num_cols = [var for var in df_cleaned.columns if df_cleaned[var].dtype in ['int64','float64']]
 df_cleaned[num_cols].describe().T
 
-st.write('Time min')
-df_cleaned.index.min()
-st.write('Time max')
-df_cleaned.index.max()
 
 # Formatting features
 df_cleaned.index = pd.to_datetime(df_cleaned.index)
