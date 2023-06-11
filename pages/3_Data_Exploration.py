@@ -103,7 +103,7 @@ def plot_target(data, var):
 
 # Vis Chart
 def plot_cat(data, col1):
-    plt.rcParams['figure.figsize']=(20,15)
+    plt.rcParams['figure.figsize']=(20,10)
     fig = plt.figure()
     sns.countplot(x=data[col1], data=data).set_title("Barplot {} Variable Distribution".format(col1))
     plt.yticks(rotation=0, fontsize=15)
