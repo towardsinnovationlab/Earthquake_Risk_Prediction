@@ -74,7 +74,7 @@ boxplot(df4,'day')
 boxplot(df4,'hour')
 
 # Look at the whole Magnitude time series
-tsplot(df4, var='mag', period='all')
+#tsplot(df4, var='mag', period='all')
 
 
 daily_data = df4.groupby(pd.Grouper(freq='D')).agg({'mag': 'mean'})
