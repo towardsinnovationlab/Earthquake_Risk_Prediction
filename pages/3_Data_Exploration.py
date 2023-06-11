@@ -54,6 +54,20 @@ df4['month'] = pd.DatetimeIndex(df4.index).month
 df4['day'] = pd.DatetimeIndex(df4.index).day
 df4['hour'] = pd.DatetimeIndex(df4.index).hour
 
+st.write("First ten max magnitude earthquakes")
+df_new = df4.copy()
+df_new = df_new.sort_values(by='mag', ascending=False)
+df_max= df_new.reset_index()
+df_max=df_max[['place','mag','depth','year','month','day','hour']].head(10)
+df_max
+
+st.write("First ten min magnitude earthquakes")
+df_new = df4.copy()
+df_new = df_new.sort_values(by='mag', ascending=True)
+df_min= df_new.reset_index()
+df_min=df_min[['place','mag','depth','year','month','day','hour']].head(10)
+df_min
+
 # Vis Chart
 def plot_target(data, var):
     plt.rcParams['figure.figsize']=(20,15)
