@@ -27,7 +27,7 @@ st.title("Time Series Analysis")
 
 
 # Formatting features
-df_cleaned.index = pd.to_datetime(df_cleaned.index)
+df_cleaned.index = datetime.datetime.strptime(df_cleaned.index)
 
 df4 = df_cleaned.copy()
 # include date time variables for analysis
