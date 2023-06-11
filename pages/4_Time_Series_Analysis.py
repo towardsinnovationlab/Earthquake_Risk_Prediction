@@ -20,22 +20,27 @@ warnings.simplefilter(action='ignore', category=UserWarning)
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
 
-df_cleaned = pd.read_csv('./data/train_cleaned.csv',index_col=0,parse_dates=True)
+df = pd.read_csv('./data/train.csv',index_col=0,parse_dates=True)
 
 
 st.title("Time Series Analysis")
 
 
-# Formatting features
-#df_cleaned.index = datetime.datetime.strptime(df_cleaned.index)
-df_cleaned.index.isna()  = datetime.datetime.strptime(df_cleaned.index.astype(str), '%Y-%m-%d %H:%M:%S')
-
-df4 = df_cleaned.copy()
+# formatting index 
+df.index = pd.to_datetime(df.index)
+# Filter data frmae with homogeneous magnitude type 
+df1=df[df['magType']=='mb']
+# drop not more helpful variables (type, magType and magSource, because uniques)
+df2 = df1.drop(['magType','type','magSource','locationSource'], axis=1)
+df3 = df2.copy()
 # include date time variables for analysis
-df4['year'] = pd.DatetimeIndex(df4.index).year 
-df4['month'] = pd.DatetimeIndex(df4.index).month
-df4['day'] = pd.DatetimeIndex(df4.index).day
-df4['hour'] = pd.DatetimeIndex(df4.index).hour
+df3['year'] = pd.DatetimeIndex(df3.index).year 
+df3['month'] = pd.DatetimeIndex(df3.index).month
+df3['day'] = pd.DatetimeIndex(df3.index).day
+df3['hour'] = pd.DatetimeIndex(df3.index).hour
+# Drop head and tail with inconsistent number of observations 
+df4 = df3.query('year >= 1980 and year <= 2009')
+
 
 def boxplot(data,var):
     plt.rcParams['figure.figsize']=(20,10)
@@ -75,7 +80,7 @@ boxplot(df4,'day')
 boxplot(df4,'hour')
 
 # Look at the whole Magnitude time series
-#tsplot(df4, var='mag', period='all')
+tsplot(df4, var='mag', period='all')
 
 
 daily_data = df4.groupby(pd.Grouper(freq='D')).agg({'mag': 'mean'})
