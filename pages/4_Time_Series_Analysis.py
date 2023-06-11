@@ -20,14 +20,14 @@ warnings.simplefilter(action='ignore', category=UserWarning)
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
 
-df_cleaned = pd.read_csv('./data/train_cleaned.csv',index_col=0,parse_dates=True)
+df_cleaned = pd.read_csv('./data/train_cleaned.csv',index_col=0,parse_dates=['time])
 
 
 st.title("Time Series Analysis")
 
 
 # Formatting features
-#df_cleaned.index = pd.to_datetime(df_cleaned.index)
+df_cleaned.index = pd.to_datetime(df_cleaned.index)
 
 df4 = df_cleaned.copy()
 # include date time variables for analysis
