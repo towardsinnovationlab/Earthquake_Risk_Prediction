@@ -12,7 +12,6 @@ import scipy.stats as stats
 from statsmodels.tsa.stattools import adfuller
 from statsmodels.graphics.tsaplots import plot_acf
 from statsmodels.tsa.seasonal import seasonal_decompose
-import dcor
 from feature_engine.timeseries.forecasting import WindowFeatures
 
 
