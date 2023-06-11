@@ -6,3 +6,5 @@ seaborn
 plotly.express
 datetime
 scipy
+statsmodels
+feature_engine
