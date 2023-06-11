@@ -17,21 +17,35 @@ warnings.simplefilter(action='ignore', category=FutureWarning)
 
 df = pd.read_csv('./data/train.csv',index_col=0,parse_dates=True)
 
-df_cleaned = pd.read_csv('./data/train_cleaned.csv',index_col=0,parse_dates=True)
+#df_cleaned = pd.read_csv('./data/train_cleaned.csv',index_col=0,parse_dates=True)
 
 if st.checkbox('Show original data'):
     st.write(df)
 
-if st.checkbox('Show data used'):
-    st.write(df_cleaned)
+#if st.checkbox('Show data used'):
+#    st.write(df_cleaned)
 
 st.title("Data Exploration")
 
 st.markdown("""
-The data set is composed by 5 variables and 8.999 rows. 
+After data cleaning activity the data set is composed by 5 variables and 8.999 rows. 
 """)
 
 st.subheader("Summary Statistics")
+
+# Filter data frmae with homogeneous magnitude type 
+df1=df[df['magType']=='mb']
+# drop not more helpful variables (type, magType and magSource, because uniques)
+df2 = df1.drop(['magType','type','magSource','locationSource'], axis=1)
+df3 = df2.copy()
+# include date time variables for analysis
+df3['year'] = pd.DatetimeIndex(df3.index).year 
+# Drop head and tail with inconsistent number of observations 
+df3_ = df3.query('year >= 1980 and year <= 2009')
+df_cleaned = df3_.drop(['year'], axis=1)
+
+# Formatting features
+df_cleaned.index = pd.to_datetime(df_cleaned.index)
 
 # Summarize attribute distributions for data type of variables
 st.write('Categorical Variables')
@@ -43,9 +57,6 @@ st.write('Numerical Variables')
 num_cols = [var for var in df_cleaned.columns if df_cleaned[var].dtype in ['int64','float64']]
 df_cleaned[num_cols].describe().T
 
-
-# Formatting features
-#df_cleaned.index = pd.to_datetime(df_cleaned.index)
 
 df4 = df_cleaned.copy()
 # include date time variables for analysis
@@ -140,11 +151,12 @@ def plot_num(data, var):
     
     st.pyplot(fig)
 
+
 fig=px.density_mapbox(df4, lat='latitude',lon='longitude',radius=1,
                     zoom=3.5, mapbox_style='stamen-terrain',center=dict(lat=11,lon=125),
                       title='Earthquake Magnitude Geographical Distribution')
 
-st.plotly_chart(fig,use_container_width=True)
+st.plotly_chart(fig, use_container_width=True)
 
 st.subheader("target variable")
 plot_target(df4, var='mag')
