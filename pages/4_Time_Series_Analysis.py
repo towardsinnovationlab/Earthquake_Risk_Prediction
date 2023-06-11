@@ -4,12 +4,11 @@ import streamlit as st
 import matplotlib.pyplot as plt
 plt.style.use('ggplot')
 import seaborn as sns
-#import plotly.express as px
+import plotly.express as px
 import datetime
 from pandas.plotting import autocorrelation_plot
 import scipy
 import scipy.stats as stats
-from statsmodels.tsa.stattools import adfuller
 from statsmodels.graphics.tsaplots import plot_acf
 from statsmodels.tsa.seasonal import seasonal_decompose
 from feature_engine.timeseries.forecasting import WindowFeatures
@@ -130,11 +129,10 @@ transformer = WindowFeatures(
 )
 
 df_rolling = transformer.fit_transform(daily_data_)
-df_rolling
 
 # Plot time series with mean rolling window for day, week month and year 
-colors = ['orange', 'green', 'red', 'blue']
 fig = plt.figure()
+colors = ['orange', 'green', 'red', 'blue']
 df_rolling.filter(
     regex="mag_.*?_mean", # `.*?` means any number of any characters.
     axis=1  # Filter by column names.
@@ -146,6 +144,7 @@ plt.ylabel('mag', fontsize=20)
 plt.yticks(rotation=0)
 plt.xticks(rotation=45, fontsize=20)
 plt.legend(my_labels,fontsize=20)
+plt.show()
 st.pyplot(fig)
 
 
