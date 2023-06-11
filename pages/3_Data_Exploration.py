@@ -36,8 +36,12 @@ df1=df[df['magType']=='mb']
 # drop not more helpful variables (type, magType and magSource, because uniques)
 df2 = df1.drop(['magType','type','magSource','locationSource'], axis=1)
 df3 = df2.copy()
+df3 = df2.copy()
+# include date time variables for analysis
+df3['year'] = pd.DatetimeIndex(df3.index).year 
 # Drop head and tail with inconsistent number of observations 
-df_cleaned = df3.query('year >= 1980 and year <= 2009')
+df3_ = df3.query('year >= 1980 and year <= 2009')
+df_cleaned = df3_.drop(['year'], axis=1)
 
 # Summarize attribute distributions for data type of variables
 st.write('Categorical Variables')
@@ -47,7 +51,7 @@ df_cleaned[obj_cols].describe().T
 # Summarize attribute distributions for data type of variables
 st.write('Numerical Variables')
 num_cols = [var for var in df_cleaned.columns if df_cleaned[var].dtype in ['int64','float64']]
-df[num_cols].describe().T
+df_cleaned[num_cols].describe().T
 
 st.write('Time min')
 df_cleaned.index.min()
