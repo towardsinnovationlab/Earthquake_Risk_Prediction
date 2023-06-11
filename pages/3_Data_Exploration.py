@@ -105,7 +105,7 @@ def plot_target(data, var):
 def plot_cat(data, col1):
     plt.rcParams['figure.figsize']=(20,10)
     fig = plt.figure()
-    sns.countplot(x=data[col1], data=data).set_title("Barplot {} Variable Distribution".format(col1),fontsize=15)
+    sns.countplot(x=data[col1], data=data).set_title("Barplot {} Variable Distribution".format(col1),fontsize=20)
     plt.yticks(rotation=0, fontsize=15)
     plt.xticks(rotation=90, fontsize=15)
     st.pyplot(fig)
