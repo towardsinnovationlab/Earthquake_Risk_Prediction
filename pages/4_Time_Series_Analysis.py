@@ -130,6 +130,7 @@ transformer = WindowFeatures(
 )
 
 df_rolling = transformer.fit_transform(daily_data_)
+df_rolling
 
 # Plot time series with mean rolling window for day, week month and year 
 colors = ['orange', 'green', 'red', 'blue']
