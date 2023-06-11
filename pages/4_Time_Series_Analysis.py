@@ -4,7 +4,7 @@ import streamlit as st
 import matplotlib.pyplot as plt
 plt.style.use('ggplot')
 import seaborn as sns
-import plotly.express as px
+#import plotly.express as px
 import datetime
 from pandas.plotting import autocorrelation_plot
 import scipy
