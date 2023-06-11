@@ -43,9 +43,9 @@ num_cols = [var for var in df_cleaned.columns if df_cleaned[var].dtype in ['int6
 df[num_cols].describe().T
 
 st.write('Time min')
-df_cleaned.index.min()
+df_cleaned.time.min()
 st.write('Time max')
-df_cleaned.index.max()
+df_cleaned.time.max()
 
 # Formatting features
 df_cleaned.index = pd.to_datetime(df_cleaned.index)
