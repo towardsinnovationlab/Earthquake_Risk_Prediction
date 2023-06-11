@@ -131,12 +131,12 @@ transformer = WindowFeatures(
 df_rolling = transformer.fit_transform(daily_data_)
 
 # Plot time series with mean rolling window for day, week month and year 
-fig = plt.figure()
 colors = ['orange', 'green', 'red', 'blue']
+fig, ax = plt.subplots(figsize=(20,10)) # Create a figure and an axis object
 df_rolling.filter(
     regex="mag_.*?_mean", # `.*?` means any number of any characters.
     axis=1  # Filter by column names.
-).plot(color=colors, linewidth=3,figsize=(20,10))
+).plot(color=colors, linewidth=3, ax=ax) # Plot on the axis object
 my_labels=['Mag_window_day', 'Mag_window_week','Mag_window_month','Mag_window_year']
 plt.suptitle("Rolling window mean of Earthquake Magnitude",fontsize=25)
 plt.xlabel('Time', fontsize=20)
@@ -144,9 +144,7 @@ plt.ylabel('mag', fontsize=20)
 plt.yticks(rotation=0)
 plt.xticks(rotation=45, fontsize=20)
 plt.legend(my_labels,fontsize=20)
-plt.show()
-st.pyplot(fig)
-
+st.pyplot(fig) 
 
 
 
