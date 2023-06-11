@@ -42,10 +42,10 @@ st.write('Numerical Variables')
 num_cols = [var for var in df_cleaned.columns if df_cleaned[var].dtype in ['int64','float64']]
 df[num_cols].describe().T
 
-st.write('Time min')
-df_cleaned.time.min()
-st.write('Time max')
-df_cleaned.time.max()
+#st.write('Time min')
+#df_cleaned.index.min()
+#st.write('Time max')
+#df_cleaned.index.max()
 
 # Formatting features
 df_cleaned.index = pd.to_datetime(df_cleaned.index)
