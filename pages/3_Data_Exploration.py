@@ -61,7 +61,7 @@ df_max= df_new.reset_index()
 df_max=df_max[['place','mag','depth','year','month','day','hour']].head(10)
 df_max
 
-st.write("First ten min magnitude earthquakes")
+st.write("Last ten min magnitude earthquakes")
 df_new = df4.copy()
 df_new = df_new.sort_values(by='mag', ascending=True)
 df_min= df_new.reset_index()
