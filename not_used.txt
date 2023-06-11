@@ -1,8 +1,2 @@
-streamlit
-numpy
-pandas
-matplotlib
-seaborn
-plotly.express
-datetime
+
 
