@@ -60,7 +60,7 @@ def tsplot(data,var,period):
         plt.plot(data[var], linewidth=3, color='Orange')
     else:
         plt.plot(data[var].loc[period], linewidth=3,color='Orange') 
-    plt.suptitle('Earthquake Magnitude Time Series period',fontsize=25)
+    plt.suptitle('Earthquake Magnitude Time Series',fontsize=25)
     plt.xlabel('Time', fontsize=15)
     plt.ylabel('{}'.format(var), fontsize=15)
     plt.yticks(rotation=0, fontsize=15)
