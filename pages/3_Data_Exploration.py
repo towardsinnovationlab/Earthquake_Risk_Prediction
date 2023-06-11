@@ -106,8 +106,6 @@ def plot_cat(data, col1):
     plt.rcParams['figure.figsize']=(20,10)
     fig = plt.figure()
     sns.countplot(x=data[col1], data=data).set_title("Barplot {} Variable Distribution".format(col1), fontsize=20)
-    plt.xlabel(fontsize=15)
-    plt.ylabel('count', fontsize=15)
     plt.yticks(rotation=0, fontsize=15)
     plt.xticks(rotation=90, fontsize=15)
     st.pyplot(fig)
@@ -145,7 +143,7 @@ fig=px.density_mapbox(df4, lat='latitude',lon='longitude',radius=1,
                     zoom=3.5, mapbox_style='stamen-terrain',center=dict(lat=11,lon=125),
                       title='Earthquake Magnitude Geographical Distribution')
 #fig.show()
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig)
 
 st.subheader("target variable")
 plot_target(df4, var='mag')
