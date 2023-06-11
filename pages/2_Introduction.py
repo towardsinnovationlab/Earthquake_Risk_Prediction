@@ -51,7 +51,7 @@ Type of seismic event.
 
 The network that originally authored the reported location of this event.
 
-**magSource **
+**magSource**
 
 Network that originally authored the reported magnitude for this event.
 
