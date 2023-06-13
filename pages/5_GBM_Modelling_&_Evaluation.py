@@ -395,7 +395,7 @@ FI_GBM_lower = pd.DataFrame(dict(
 plt.rcParams['figure.figsize']=(8,8)
 fig=plt.figure()
 plt.barh(y=FI_GBM_lower["feature_names"], width=FI_GBM_lower["feature_importance"], color="red")
-plt.title("GBM mean prediction Features Permutation Importance")
+plt.title("GBM lower prediction Features Permutation Importance")
 plt.xlabel("Importance")
 plt.ylabel("Feature")
 # Display the chart with streamlit
@@ -414,7 +414,7 @@ FI_GBM_median = pd.DataFrame(dict(
 plt.rcParams['figure.figsize']=(8,8)
 fig=plt.figure()
 plt.barh(y=FI_GBM_median["feature_names"], width=FI_GBM_median["feature_importance"], color="red")
-plt.title("GBM mean prediction Features Permutation Importance")
+plt.title("GBM median prediction Features Permutation Importance")
 plt.xlabel("Importance")
 plt.ylabel("Feature")
 # Display the chart with streamlit
@@ -433,7 +433,7 @@ FI_GBM_upper = pd.DataFrame(dict(
 plt.rcParams['figure.figsize']=(8,8)
 fig=plt.figure()
 plt.barh(y=FI_GBM_upper["feature_names"], width=FI_GBM_upper["feature_importance"], color="red")
-plt.title("GBM mean prediction Features Permutation Importance")
+plt.title("GBM upper prediction Features Permutation Importance")
 plt.xlabel("Importance")
 plt.ylabel("Feature")
 # Display the chart with streamlit
