@@ -11,4 +11,5 @@ statsmodels
 sklearn
 eli5
 pickle5
+tensorflow
 
