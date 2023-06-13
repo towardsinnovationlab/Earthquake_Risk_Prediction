@@ -62,7 +62,7 @@ X_test_sc = pd.read_csv('./data/X_test_sc.csv')
 #DATA_URL_ytr = ('./data/y_train.csv')
 #y_train = pd.read_csv(DATA_URL_ytr)
 #DATA_URL_yte = ('./data/y_test.csv')
-y_test = pd.read_csv('./data/y_test_sc.csv',index_col=0,parse_dates=True)
+y_test = pd.read_csv('./data/y_test_sc.csv')
 
 
 # vis results
@@ -101,10 +101,11 @@ def boxplot2(data1,data2, var):
 # Model
 # loading in the model to predict on the data
 with open('KNN_model.pkl', 'rb') as pickle_in:
-    KNN_model = pickle.load(pickle_in)
+    KNN_regressor = pickle.load(pickle_in)
+    
 
 # prediction
-knn_mean_te = KNN_model.predict(X_test_sc)
+knn_mean_te = KNN_regressor.predict(X_test_sc)
 
 
 # Transformations
