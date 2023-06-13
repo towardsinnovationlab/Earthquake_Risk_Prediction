@@ -8,7 +8,7 @@ plotly.express
 datetime
 scipy
 statsmodels
-sklearn==1.2.2
+sklearn
 eli5
 pickle5
 
