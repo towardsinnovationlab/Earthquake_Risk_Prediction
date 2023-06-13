@@ -13,6 +13,9 @@ from sklearn.ensemble import IsolationForest
 from sklearn.inspection import PartialDependenceDisplay
 from feature_engine.encoding import MeanEncoder
 import streamlit as st
+import eli5
+from eli5.sklearn import PermutationImportance
+
 
 import warnings
 warnings.simplefilter(action='ignore', category=UserWarning)
@@ -359,6 +362,54 @@ tsmultiplot(y_test, gbm_mean_, 'GBM')
 boxplot2(y_test, gbm_mean_, 'GBM')
 
 results_tsplot(qgbm_lower_, gbm_mean_, qgbm_median_, qgbm_upper_,'GBM')
+
+# Mean Features Importance
+print('GBM mean prediction Features Permutation Importance')
+GBM_perm_mean = PermutationImportance(GBM_model, random_state=0).fit(X_test, np.log1p(y_test))
+FI_GBM_mean = eli5.show_weights(GBM_perm_mean, feature_names = X_test.columns.tolist())
+FI_GBM_mean
+
+
+def mse(y_true, y_pred):
+    return np.mean((y_true - y_pred) ** 2)
+# Define a function to calculate the permutation feature importance for a given model and data
+def permutation_feature_importance(model, X, y):
+    # Get the baseline MSE using the original data
+    y_pred = model.predict(X)
+    baseline_mse = mse(y, y_pred)
+    
+    # Initialize an empty array to store the feature importances
+    feature_importances = np.zeros(X.shape[1])
+    
+    # Loop over each feature column
+    for i in range(X.shape[1]):
+        # Make a copy of the original data
+        X_permuted = X.copy()
+        
+        # Shuffle the values of the current feature column
+        np.random.shuffle(X_permuted[:, i])
+        
+        # Get the MSE using the permuted data
+        y_pred_permuted = model.predict(X_permuted)
+        permuted_mse = mse(y, y_pred_permuted)
+        
+        # Calculate the feature importance as the difference between the baseline and permuted MSEs
+        feature_importances[i] = baseline_mse - permuted_mse
+    
+    # Return the feature importances array
+    return feature_importances
+
+print('GBM mean prediction Features Permutation Importance')
+feature_importances = permutation_feature_importance(qNN_model_lower, X_test, np.log1p(y_test))
+# Create a pandas dataframe with two columns: Weight and Feature
+feature_names = ['place', 'depth', 'longitude', 'latitude']
+FI_GBM_perm_lower = pd.DataFrame({'Weight': feature_importances, 'Feature': feature_names})
+# Print the feature importances
+FI_GBM_perm_lower.sort_values(by='Weight',ascending=False)
+
+
+
+
 
 # Mean Features Importance
 # Define the values for weight and feature
