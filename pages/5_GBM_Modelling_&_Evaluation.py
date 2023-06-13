@@ -382,10 +382,10 @@ FI_GBM_mean = pd.DataFrame(dict(
 st.table(FI_GBM_mean)
 
 plt.rcParams['figure.figsize']=(10,10)
-FI_GBM_mean_values = FI_GBM_mean.values.tolist()
+FI_GBM_mean_values = FI_GBM_mean.values
 fig, ax = plt.subplots()
 plt.barh([row[1] for row in FI_GBM_mean_values], [row[0] for row in FI_GBM_mean_values])
-plt.title('CNN upper prediction Features Permutation Importance', fontsize=30)
+plt.title('GBM mean prediction Features Permutation Importance', fontsize=30)
 ax.set_xlabel("Weight", fontsize=15)
 ax.set_ylabel("Feature",fontsize=15)
 plt.yticks(fontsize=35)
