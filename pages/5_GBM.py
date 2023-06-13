@@ -109,7 +109,6 @@ X_t = enc.transform(X)
 split_point = '2009-01-01'
 X_train, X_test = X_t[X_t.index<split_point], X_t[X_t.index>=split_point]
 y_train, y_test = y[y.index<split_point], y[y.index>=split_point]
-len(X_train), len(X_test)
 # Split for time series cross validation
 ts_cv = TimeSeriesSplit(n_splits=5)
 # splits
@@ -181,6 +180,8 @@ df_gbm = pd.DataFrame(data=df_gbm, columns=['model','evaluation',
                                             'train_mean','test_mean',
                                            'train_median','test_median',
                                            'train_upper','test_upper'])
+
+st.subheader("Metric results")
 df_gbm
 
 
