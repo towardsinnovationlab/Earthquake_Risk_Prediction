@@ -15,7 +15,6 @@ from feature_engine.encoding import MeanEncoder
 import eli5
 from eli5.sklearn import PermutationImportance
 import streamlit as st
-import pickle
 
 import warnings
 warnings.simplefilter(action='ignore', category=UserWarning)
@@ -26,6 +25,7 @@ st.title("Gradient Boosting Machine model")
 # vis results
 def tsmultiplot(data1,data2,var):
     plt.rcParams['figure.figsize']=(20,10)
+    fif=plt.figure()
     data1_ = pd.DataFrame(data1).reset_index()
     data2_ = pd.DataFrame(data2, columns=['mag_pred'])
     data_new = pd.concat([data1_, data2_], axis=1).set_index("time")
@@ -37,10 +37,11 @@ def tsmultiplot(data1,data2,var):
     plt.yticks(rotation=0, fontsize=15)
     plt.xticks(rotation=45, fontsize=15)
     plt.legend(my_labels,fontsize=15)
-    plt.show()
+    st.pyplot(fig)
 
 def boxplot2(data1,data2, var):
     plt.rcParams['figure.figsize']=(20,10)
+    fig=plt.figure()
     data1_ = pd.DataFrame(data1).reset_index()
     data2_ = pd.DataFrame(data2, columns=['mag_pred'])
     data_new = pd.concat([data1_, data2_], axis=1).set_index("time")
@@ -54,7 +55,7 @@ def boxplot2(data1,data2, var):
     plt.yticks(rotation=0,fontsize=15)
     plt.xticks(rotation=45, fontsize=15)
     plt.legend(loc="upper right", fontsize=15)
-    plt.show() 
+    st.pyplot(fig)
 
 df = pd.read_csv('./data/train.csv',index_col=0,parse_dates=True)
 # formatting index 
