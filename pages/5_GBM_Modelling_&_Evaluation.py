@@ -363,6 +363,8 @@ boxplot2(y_test, gbm_mean_, 'GBM')
 
 results_tsplot(qgbm_lower_, gbm_mean_, qgbm_median_, qgbm_upper_,'GBM')
 
+
+
 # Mean Features Importance
 st.write('GBM mean prediction Features Permutation Importance')
 GBM_perm_mean = PermutationImportance(GBM_model, random_state=0).fit(X_test, np.log1p(y_test))
@@ -406,11 +408,12 @@ feature_names = ['place', 'depth', 'longitude', 'latitude']
 FI_GBM_perm_mean = pd.DataFrame({'Weight': feature_importances, 'Feature': feature_names})
 # Print the feature importances
 FI_GBM_perm_mean.sort_values(by='Weight',ascending=False)
+FI_GBM_perm_mean
 
 
 
 
-
+------------------------------------------------------------------------------
 # Mean Features Importance
 # Define the values for weight and feature
 plt.rcParams['figure.figsize']=(10,10)
