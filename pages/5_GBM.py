@@ -298,7 +298,7 @@ df_gbm = pd.DataFrame(data=df_gbm, columns=['model','evaluation',
                                            'train_median','test_median',
                                            'train_upper','test_upper'])
 
-st.subheader("results")
+st.subheader("Results")
 df_gbm
 
 # create data as a list of dictionaries
@@ -350,6 +350,9 @@ test_metrics_model(mae_qgbm_lower_te, mae_gbm_mean_te, mae_qgbm_median_te, mae_q
 
 # Transformations
 scaling = MinMaxScaler()
+qgbm_lower_ = np.expm1(qgbm_lower_te).reshape(-1,1)
+qgbm_median_ = np.expm1(qgbm_median_te).reshape(-1,1)
+qgbm_upper_ = np.expm1(qgbm_upper_te).reshape(-1,1)
 gbm_mean_ = np.expm1(gbm_mean_te).reshape(-1,1)
 
 tsmultiplot(y_test, gbm_mean_, 'GBM')
