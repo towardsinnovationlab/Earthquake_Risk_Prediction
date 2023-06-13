@@ -1,16 +1,8 @@
-#setup deterministic results 
 import numpy as np
-
 import pandas as pd
 import matplotlib.pyplot as plt
 plt.style.use('ggplot')
 import seaborn as sns
-import plotly.express as px
-import datetime
-from statsmodels.tsa.stattools import adfuller
-from pandas.plotting import autocorrelation_plot
-from statsmodels.graphics.tsaplots import plot_acf
-from statsmodels.tsa.seasonal import seasonal_decompose
 from sklearn.metrics import mean_squared_error
 from sklearn.metrics import mean_absolute_error
 from sklearn.preprocessing import MinMaxScaler
