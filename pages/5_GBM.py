@@ -12,8 +12,6 @@ from sklearn.model_selection import TimeSeriesSplit
 from sklearn.ensemble import IsolationForest
 from sklearn.inspection import PartialDependenceDisplay
 from feature_engine.encoding import MeanEncoder
-import eli5
-from eli5.sklearn import PermutationImportance
 import streamlit as st
 
 import warnings
@@ -363,7 +361,6 @@ boxplot2(y_test, gbm_mean_, 'GBM')
 results_tsplot(qgbm_lower_, gbm_mean_, qgbm_median_, qgbm_upper_,'GBM')
 
 # Mean Features Importance
-st.write('GBM mean prediction Features Permutation Importance')
 # Define the values for weight and feature
 plt.rcParams['figure.figsize']=(10,10)
 weight = [0.0094, 0.2062, 0.0097, -0.0059]
@@ -383,7 +380,62 @@ plt.yticks(fontsize=35)
 plt.xticks(fontsize=15)
 st.pyplot(fig)
 
+# Define the values for weight and feature
+plt.rcParams['figure.figsize']=(10,10)
+weight = [0.0130, 0.1901 , 0.0043, -0.0286]
+feature = ["place", "depth", "longitude", "latitude"]
 
+# Create a figure and an axis
+fig, ax = plt.subplots()
+
+# Plot a horizontal bar chart
+ax.barh(feature, weight)
+
+# Add labels and title
+ax.set_xlabel("Weight", fontsize=15)
+ax.set_ylabel("Feature",fontsize=15)
+ax.set_title('GBM lower prediction Features Permutation Importance', fontsize=30)
+plt.yticks(fontsize=35)
+plt.xticks(fontsize=15)
+st.pyplot(fig)
+
+# Define the values for weight and feature
+plt.rcParams['figure.figsize']=(10,10)
+weight = [0.0159, 0.1722, -0.0054, -0.0049]
+feature = ["place", "depth", "longitude", "latitude"]
+
+# Create a figure and an axis
+fig, ax = plt.subplots()
+
+# Plot a horizontal bar chart
+ax.barh(feature, weight)
+
+# Add labels and title
+ax.set_xlabel("Weight", fontsize=15)
+ax.set_ylabel("Feature",fontsize=15)
+ax.set_title('GBM median prediction Features Permutation Importance', fontsize=30)
+plt.yticks(fontsize=35)
+plt.xticks(fontsize=15)
+st.pyplot(fig)
+
+# Define the values for weight and feature
+plt.rcParams['figure.figsize']=(10,10)
+weight = [0.0226, 0.0254, 0.0121, -0.0151]
+feature = ["place", "depth", "longitude", "latitude"]
+
+# Create a figure and an axis
+fig, ax = plt.subplots()
+
+# Plot a horizontal bar chart
+ax.barh(feature, weight)
+
+# Add labels and title
+ax.set_xlabel("Weight", fontsize=15)
+ax.set_ylabel("Feature",fontsize=15)
+ax.set_title('GBM upper prediction Features Permutation Importance', fontsize=30)
+plt.yticks(fontsize=35)
+plt.xticks(fontsize=15)
+st.pyplot(fig)
 
 
 
