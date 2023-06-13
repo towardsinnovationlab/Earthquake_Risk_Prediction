@@ -369,143 +369,26 @@ results_tsplot(qgbm_lower_, gbm_mean_, qgbm_median_, qgbm_upper_,'GBM')
 st.write('GBM mean prediction Features Permutation Importance')
 GBM_perm_mean = PermutationImportance(GBM_model, random_state=0).fit(X_test, np.log1p(y_test))
 # Create a dataframe with feature importances and names
-df_fi = pd.DataFrame(dict(
+FI_GBM_mean = pd.DataFrame(dict(
     feature_names=X_test.columns.tolist(),
     feat_imp=GBM_perm_mean.feature_importances_,
     std=GBM_perm_mean.feature_importances_std_,
 ))
 
 # Sort the dataframe by feature importance
-df_fi = df_fi.sort_values('feat_imp', ascending=False)
+#df_fi = df_fi.sort_values('feat_imp', ascending=False)
 
 # Display the dataframe as a table
-st.table(df_fi)
+st.table(FI_GBM_mean)
 
-#FI_GBM_mean = eli5.show_weights(GBM_perm_mean, feature_names = X_test.columns.tolist())
-#FI_GBM_mean
-
-
-def mse(y_true, y_pred):
-    return np.mean((y_true - y_pred) ** 2)
-# Define a function to calculate the permutation feature importance for a given model and data
-def permutation_feature_importance(model, X, y):
-    # Get the baseline MSE using the original data
-    y_pred = model.predict(X)
-    baseline_mse = mse(y, y_pred)
-    
-    # Initialize an empty array to store the feature importances
-    feature_importances = np.zeros(X.shape[1])
-    
-    # Loop over each feature column
-    for i in range(X.shape[1]):
-        # Make a copy of the original data
-        X_permuted = X.copy()
-        
-        # Shuffle the values of the current feature column
-        np.random.shuffle(X_permuted[:, i])
-        
-        # Get the MSE using the permuted data
-        y_pred_permuted = model.predict(X_permuted)
-        permuted_mse = mse(y, y_pred_permuted)
-        
-        # Calculate the feature importance as the difference between the baseline and permuted MSEs
-        feature_importances[i] = baseline_mse - permuted_mse
-    
-    # Return the feature importances array
-    return feature_importances
-
-print('GBM mean prediction Features Permutation Importance')
-feature_importances = permutation_feature_importance(GBM_model, X_test, np.log1p(y_test))
-# Create a pandas dataframe with two columns: Weight and Feature
-feature_names = ['place', 'depth', 'longitude', 'latitude']
-FI_GBM_perm_mean = pd.DataFrame({'Weight': feature_importances, 'Feature': feature_names})
-# Print the feature importances
-FI_GBM_perm_mean.sort_values(by='Weight',ascending=False)
-FI_GBM_perm_mean
-
-
-
-
-###########################################################
-# Mean Features Importance
-# Define the values for weight and feature
 plt.rcParams['figure.figsize']=(10,10)
-weight = [0.0094, 0.2062, 0.0097, -0.0059]
-feature = ["place", "depth", "longitude", "latitude"]
-
-# Create a figure and an axis
+FI_GBM_mean_values = FI_GBM_mean.values.tolist()
 fig, ax = plt.subplots()
-
-# Plot a horizontal bar chart
-ax.barh(feature, weight)
-
-# Add labels and title
+plt.barh([row[1] for row in FI_GBM_mean_values], [row[0] for row in FI_GBM_mean_values])
+plt.title('CNN upper prediction Features Permutation Importance', fontsize=30)
 ax.set_xlabel("Weight", fontsize=15)
 ax.set_ylabel("Feature",fontsize=15)
-ax.set_title('GBM mean prediction Features Permutation Importance', fontsize=30)
 plt.yticks(fontsize=35)
 plt.xticks(fontsize=15)
 st.pyplot(fig)
-
-# Define the values for weight and feature
-plt.rcParams['figure.figsize']=(10,10)
-weight = [0.0130, 0.1901 , 0.0043, -0.0286]
-feature = ["place", "depth", "longitude", "latitude"]
-
-# Create a figure and an axis
-fig, ax = plt.subplots()
-
-# Plot a horizontal bar chart
-ax.barh(feature, weight)
-
-# Add labels and title
-ax.set_xlabel("Weight", fontsize=15)
-ax.set_ylabel("Feature",fontsize=15)
-ax.set_title('GBM lower prediction Features Permutation Importance', fontsize=30)
-plt.yticks(fontsize=35)
-plt.xticks(fontsize=15)
-st.pyplot(fig)
-
-# Define the values for weight and feature
-plt.rcParams['figure.figsize']=(10,10)
-weight = [0.0159, 0.1722, -0.0054, -0.0049]
-feature = ["place", "depth", "longitude", "latitude"]
-
-# Create a figure and an axis
-fig, ax = plt.subplots()
-
-# Plot a horizontal bar chart
-ax.barh(feature, weight)
-
-# Add labels and title
-ax.set_xlabel("Weight", fontsize=15)
-ax.set_ylabel("Feature",fontsize=15)
-ax.set_title('GBM median prediction Features Permutation Importance', fontsize=30)
-plt.yticks(fontsize=35)
-plt.xticks(fontsize=15)
-st.pyplot(fig)
-
-# Define the values for weight and feature
-plt.rcParams['figure.figsize']=(10,10)
-weight = [0.0226, 0.0254, 0.0121, -0.0151]
-feature = ["place", "depth", "longitude", "latitude"]
-
-# Create a figure and an axis
-fig, ax = plt.subplots()
-
-# Plot a horizontal bar chart
-ax.barh(feature, weight)
-
-# Add labels and title
-ax.set_xlabel("Weight", fontsize=15)
-ax.set_ylabel("Feature",fontsize=15)
-ax.set_title('GBM upper prediction Features Permutation Importance', fontsize=30)
-plt.yticks(fontsize=35)
-plt.xticks(fontsize=15)
-st.pyplot(fig)
-
-
-
-
-
 
