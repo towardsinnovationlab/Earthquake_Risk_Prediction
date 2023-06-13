@@ -8,6 +8,7 @@ from sklearn.metrics import mean_absolute_error
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import GridSearchCV
 from sklearn.ensemble import GradientBoostingRegressor
+from sklearn.model_selection import TimeSeriesSplit
 from sklearn.ensemble import IsolationForest
 from sklearn.inspection import PartialDependenceDisplay
 from feature_engine.encoding import MeanEncoder
