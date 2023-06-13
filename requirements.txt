@@ -7,8 +7,8 @@ feature_engine
 plotly.express
 datetime
 statsmodels
-sklearn
 eli5
 pickle5
+sklearn==1.1.2
 
 
