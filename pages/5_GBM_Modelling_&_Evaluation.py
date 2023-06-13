@@ -439,3 +439,52 @@ plt.ylabel("Feature")
 # Display the chart with streamlit
 st.pyplot(fig)
 
+# Mean Partial Dependence Plot
+plt.rcParams['figure.figsize']=(25,15)
+fig, axs = plt.subplots(nrows=2, ncols=2)
+plt.suptitle('Partial dependence of Earthquake Magnitude with GBM mean model',fontsize=25)
+
+features = ['latitude','longitude','depth','place']
+for i, feature in enumerate(features):
+    ax = axs.flatten()[i]
+    PartialDependenceDisplay.from_estimator(GBM_model, X_t, [feature], ax=ax, kind='average', random_state=0)
+    ax.set_title(f'Partial dependence of Earthquake Magnitude on {feature} with GBM model')
+st.pyplot(fig)
+
+# Lower Partial Dependence Plot
+plt.rcParams['figure.figsize']=(25,15)
+fig, axs = plt.subplots(nrows=2, ncols=2)
+plt.suptitle('Partial dependence of Earthquake Magnitude with GBM lower model',fontsize=25)
+
+features = ['latitude','longitude','depth','place']
+for i, feature in enumerate(features):
+    ax = axs.flatten()[i]
+    PartialDependenceDisplay.from_estimator(qGBM_model_lower, X_t, [feature], ax=ax, kind='average', random_state=0)
+    ax.set_title(f'Partial dependence of Earthquake Magnitude on {feature} with GBM model')
+st.pyplot(fig)
+
+# Median Partial Dependence Plot
+plt.rcParams['figure.figsize']=(25,15)
+fig, axs = plt.subplots(nrows=2, ncols=2)
+plt.suptitle('Partial dependence of Earthquake Magnitude with GBM median model',fontsize=25)
+
+features = ['latitude','longitude','depth','place']
+for i, feature in enumerate(features):
+    ax = axs.flatten()[i]
+    PartialDependenceDisplay.from_estimator(qGBM_model_median, X_t, [feature], ax=ax, kind='average', random_state=0)
+    ax.set_title(f'Partial dependence of Earthquake Magnitude on {feature} with GBM model')
+st.pyplot(fig)
+
+# Upper Partial Dependence Plot
+plt.rcParams['figure.figsize']=(25,15)
+fig, axs = plt.subplots(nrows=2, ncols=2)
+plt.suptitle('Partial dependence of Earthquake Magnitude with GBM upper model',fontsize=25)
+
+features = ['latitude','longitude','depth','place']
+for i, feature in enumerate(features):
+    ax = axs.flatten()[i]
+    PartialDependenceDisplay.from_estimator(qGBM_model_upper, X_t, [feature], ax=ax, kind='average', random_state=0)
+    ax.set_title(f'Partial dependence of Earthquake Magnitude on {feature} with GBM model')
+st.pyplot(fig)
+
+
