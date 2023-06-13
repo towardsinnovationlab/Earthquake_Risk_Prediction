@@ -34,9 +34,9 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.neural_network import MLPRegressor
 from sklearn.model_selection import TimeSeriesSplit
-from sklearn_quantile import (
-    RandomForestQuantileRegressor,
-    KNeighborsQuantileRegressor)
+#from sklearn_quantile import (
+#    RandomForestQuantileRegressor,
+#    KNeighborsQuantileRegressor)
 from sklearn.ensemble import IsolationForest
 from sklearn.inspection import PartialDependenceDisplay
 from feature_engine.encoding import MeanEncoder
