@@ -9,7 +9,6 @@ datetime
 scipy
 statsmodels
 sklearn
-sklearn-quantile
 eli5
 pickle5
 tensorflow
