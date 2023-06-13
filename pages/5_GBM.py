@@ -56,6 +56,122 @@ def boxplot2(data1,data2, var):
     plt.xticks(rotation=45, fontsize=15)
     plt.legend(loc="upper right", fontsize=15)
     st.pyplot(fig)
+    
+def results_tsplot(results_lower, results_mean, results_median, results_upper,model):
+    # Create a figure with a single subplot
+    fig, ax = plt.subplots(figsize=(18, 10))
+
+
+    # Plot the actual data points
+    ax.plot(X_test.index, y_test, color='blue', label='Actual')
+
+    # Plot the predicted mean
+    ax.plot(X_test.index, results_median, color='red', linestyle='dashed', linewidth=3,label='Predicted Median')
+    #ax.plot(X_test.index, results_mean, color='yellow', linestyle='dotted', linewidth=3,label='Predicted Mean')
+
+
+    # Plot the lower and upper quantiles
+    results_lower_flat = np.ravel(results_lower)
+    results_upper_flat = np.ravel(results_upper)
+    ax.fill_between(X_test.index, results_lower_flat, results_upper_flat, alpha=0.4, color='green', 
+                linewidth=3,label='Prediction Interval')
+
+    # Set the x-axis label and title
+    ax.set_xlabel('Time', fontsize=12)
+    ax.set_ylabel('Magnitude', fontsize=12)
+    ax.set_title('{} Regression Results'.format(model), fontsize=15, fontweight='bold')
+
+    # Set the tick label font size
+    ax.tick_params(axis='both', labelsize=12)
+
+    # Add a legend
+    ax.legend(fontsize=12)
+
+    # Show the chart
+    st.pyplot(fig)
+
+def train_metrics_model(mae_lower, mae_mean, mae_median, mae_upper, 
+                        rmse_lower, rmse_mean, rmse_median, rmse_upper, model):
+    plt.rcParams['figure.figsize']=(15,10)
+    # Create a dictionary of the data for MAE
+    mae_train_data = {
+    'train_lower': mae_lower,
+    'train_mean': mae_mean,
+    'train_median': mae_median,
+    'train_upper': mae_upper
+    }
+
+    # Create a dictionary of the data for RMSE
+    rmse_train_data = {
+    'train_lower': rmse_lower,
+    'train_mean': rmse_mean,
+    'train_median': rmse_median,
+    'train_upper': rmse_upper
+    }
+
+    # Create a figure and axis
+    fig, ax = plt.subplots()
+
+    # Plot the MAE data as a red dashed line with asterisk markers
+    ax.plot([x.replace('_', ' ').title() for x in mae_train_data.keys()], list(mae_train_data.values()), color='red', linestyle='--', linewidth=5, marker='*', label='MAE')
+
+    # Plot the RMSE data as a blue solid line with triangle markers
+    ax.plot([x.replace('_', ' ').title() for x in rmse_train_data.keys()], list(rmse_train_data.values()), color='blue', linestyle='-', linewidth=5, marker='^', label='RMSE')
+
+    # Set the title and axis labels
+    ax.set_title('Train Metrics for {}'.format(model), fontsize=30)
+    ax.set_xlabel('Metric', fontsize=30)
+    ax.set_ylabel('Value', fontsize=30)
+    plt.yticks(fontsize=25)
+    plt.xticks(fontsize=25)
+
+    # Add a legend
+    ax.legend(fontsize=15)
+
+    # Show the plot
+    st.pyplot(fig)
+    
+def test_metrics_model(mae_lower, mae_mean, mae_median, mae_upper, 
+                        rmse_lower, rmse_mean, rmse_median, rmse_upper, model):
+    plt.rcParams['figure.figsize']=(15,10)
+    # Create a dictionary of the data for MAE
+    mae_test_data = {
+    'test_lower': mae_lower,
+    'test_mean': mae_mean,
+    'test_median': mae_median,
+    'test_upper': mae_upper
+    }
+
+    # Create a dictionary of the data for RMSE
+    rmse_test_data = {
+    'test_lower': rmse_lower,
+    'test_mean': rmse_mean,
+    'test_median': rmse_median,
+    'test_upper': rmse_upper
+    }
+
+    # Create a figure and axis
+    fig, ax = plt.subplots()
+
+    # Plot the MAE data as a red dashed line with asterisk markers
+    ax.plot([x.replace('_', ' ').title() for x in mae_test_data.keys()], list(mae_test_data.values()), color='red', linestyle='--', linewidth=5, marker='*', label='MAE')
+
+    # Plot the RMSE data as a blue solid line with triangle markers
+    ax.plot([x.replace('_', ' ').title() for x in rmse_test_data.keys()], list(rmse_test_data.values()), color='blue', linestyle='-', linewidth=5, marker='^', label='RMSE')
+
+    # Set the title and axis labels
+    ax.set_title('Test Metrics for {}'.format(model), fontsize=30)
+    ax.set_xlabel('Metric', fontsize=30)
+    ax.set_ylabel('Value', fontsize=30)
+    plt.yticks(fontsize=25)
+    plt.xticks(fontsize=25)
+
+    # Add a legend
+    ax.legend(fontsize=15)
+
+    # Show the plot
+    st.pyplot(fig)
+
 
 df = pd.read_csv('./data/train.csv',index_col=0,parse_dates=True)
 # formatting index 
@@ -182,9 +298,55 @@ df_gbm = pd.DataFrame(data=df_gbm, columns=['model','evaluation',
                                            'train_median','test_median',
                                            'train_upper','test_upper'])
 
-st.subheader("Metric results")
+st.subheader("results")
 df_gbm
 
+# create data as a list of dictionaries
+df_gbm_MAE_tr = [
+  {'MAE': 'train_lower', 'value': mae_qgbm_lower_tr},
+  {'MAE': 'train_mean', 'value': mae_gbm_mean_tr},
+  {'MAE': 'train_median', 'value': mae_qgbm_median_tr},
+  {'MAE': 'train_upper', 'value': mae_qgbm_upper_tr},
+]
+
+# create the DataFrame
+df_gbm_MAE_tr = pd.DataFrame(df_gbm_MAE_tr)
+# create data as a list of dictionaries
+df_gbm_RMSE_tr = [
+  {'RMSE': 'train_lower', 'value': rmse_qgbm_lower_tr},
+  {'RMSE': 'train_mean', 'value': rmse_gbm_mean_tr},
+  {'RMSE': 'train_median', 'value': rmse_qgbm_median_tr},
+  {'RMSE': 'train_upper', 'value': rmse_qgbm_upper_tr},
+]
+
+# create the DataFrame
+df_gbm_RMSE_tr = pd.DataFrame(df_gbm_RMSE_tr)
+# create data as a list of dictionaries
+df_gbm_MAE_te = [
+  {'MAE': 'test_lower', 'value': mae_qgbm_lower_te},
+  {'MAE': 'test_mean', 'value': mae_gbm_mean_te},
+  {'MAE': 'test_median', 'value': mae_qgbm_median_te},
+  {'MAE': 'test_upper', 'value': mae_qgbm_upper_te},
+]
+
+# create the DataFrame
+df_gbm_MAE_te = pd.DataFrame(df_gbm_MAE_te)
+# create data as a list of dictionaries
+df_gbm_RMSE_te = [
+  {'RMSE': 'test_lower', 'value': rmse_qgbm_lower_te},
+  {'RMSE': 'test_mean', 'value': rmse_gbm_mean_te},
+  {'RMSE': 'test_median', 'value': rmse_qgbm_median_te},
+  {'RMSE': 'test_upper', 'value': rmse_qgbm_upper_te},
+]
+
+# create the DataFrame
+df_gbm_RMSE_te = pd.DataFrame(df_gbm_RMSE_te)
+
+train_metrics_model(mae_qgbm_lower_tr, mae_gbm_mean_tr, mae_qgbm_median_tr, mae_qgbm_upper_tr,
+                   rmse_qgbm_lower_tr, rmse_gbm_mean_tr, rmse_qgbm_median_tr, rmse_qgbm_upper_tr,'GBM')
+
+test_metrics_model(mae_qgbm_lower_te, mae_gbm_mean_te, mae_qgbm_median_te, mae_qgbm_upper_te,
+                   rmse_qgbm_lower_te, rmse_gbm_mean_te, rmse_qgbm_median_te, rmse_qgbm_upper_te,'GBM')
 
 # Transformations
 scaling = MinMaxScaler()
@@ -193,4 +355,33 @@ gbm_mean_ = np.expm1(gbm_mean_te).reshape(-1,1)
 tsmultiplot(y_test, gbm_mean_, 'GBM')
 
 boxplot2(y_test, gbm_mean_, 'GBM')
+
+results_tsplot(qgbm_lower_, gbm_mean_, qgbm_median_, qgbm_upper_,'GBM')
+
+# Mean Features Importance
+st.write('GBM mean prediction Features Permutation Importance')
+GBM_perm_mean = PermutationImportance(GBM_model, random_state=0).fit(X_test, np.log1p(y_test))
+FI_GBM_mean = eli5.show_weights(GBM_perm_mean, feature_names = X_test.columns.tolist())
+FI_GBM_mean
+
+# Lower Features Importance
+st.write('GBM lower prediction Features Permutation Importance')
+GBM_perm_lower = PermutationImportance(qGBM_model_lower, random_state=0).fit(X_test, np.log1p(y_test))
+FI_GBM_lower = eli5.show_weights(GBM_perm_lower, feature_names = X_test.columns.tolist())
+FI_GBM_lower
+
+# Median Features Importance
+st.write('GBM median prediction Features Permutation Importance')
+GBM_perm_median = PermutationImportance(qGBM_model_median, random_state=0).fit(X_test, np.log1p(y_test))
+FI_GBM_median = eli5.show_weights(GBM_perm_median, feature_names = X_test.columns.tolist())
+FI_GBM_median
+
+# Upper Features Importance
+st.write('GBM upper prediction Features Permutation Importance')
+GBM_perm_upper = PermutationImportance(qGBM_model_upper, random_state=0).fit(X_test, np.log1p(y_test))
+FI_GBM_upper = eli5.show_weights(GBM_perm_upper, feature_names = X_test.columns.tolist())
+FI_GBM_upper
+
+
+
 
