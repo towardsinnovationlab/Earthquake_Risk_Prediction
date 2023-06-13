@@ -413,7 +413,7 @@ FI_GBM_perm_mean
 
 
 
-------------------------------------------------------------------------------
+###########################################################
 # Mean Features Importance
 # Define the values for weight and feature
 plt.rcParams['figure.figsize']=(10,10)
