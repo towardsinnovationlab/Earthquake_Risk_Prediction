@@ -171,6 +171,35 @@ def test_metrics_model(mae_lower, mae_mean, mae_median, mae_upper,
 
     # Show the plot
     st.pyplot(fig)
+    
+def mse(y_true, y_pred):
+    return np.mean((y_true - y_pred) ** 2)    
+# Define a function to calculate the permutation feature importance for a given model and data
+def permutation_feature_importance(model, X, y):
+    # Get the baseline MSE using the original data
+    y_pred = model.predict(X)
+    baseline_mse = mse(y, y_pred)
+    
+    # Initialize an empty array to store the feature importances
+    feature_importances = np.zeros(X.shape[1])
+    
+    # Loop over each feature column
+    for i in range(X.shape[1]):
+        # Make a copy of the original data
+        X_permuted = X.copy()
+        
+        # Shuffle the values of the current feature column
+        np.random.shuffle(X_permuted[:, i])
+        
+        # Get the MSE using the permuted data
+        y_pred_permuted = model.predict(X_permuted)
+        permuted_mse = mse(y, y_pred_permuted)
+        
+        # Calculate the feature importance as the difference between the baseline and permuted MSEs
+        feature_importances[i] = baseline_mse - permuted_mse
+    
+    # Return the feature importances array
+    return feature_importances
 
 
 df = pd.read_csv('./data/train.csv',index_col=0,parse_dates=True)
@@ -363,28 +392,27 @@ results_tsplot(qgbm_lower_, gbm_mean_, qgbm_median_, qgbm_upper_,'GBM')
 
 # Mean Features Importance
 st.write('GBM mean prediction Features Permutation Importance')
-GBM_perm_mean = PermutationImportance(GBM_model, random_state=0).fit(X_test, np.log1p(y_test))
-#FI_GBM_mean = eli5.show_weights(GBM_perm_mean, feature_names = X_test.columns.tolist())
-FI_GBM_mean = eli5.format_as_text(eli5.explain_weights(GBM_perm_mean))
-FI_GBM_mean
+feature_importances = permutation_feature_importance(GBM_model, X_test.values.reshape(-1,4), np.log1p(y_test))
+# Create a pandas dataframe with two columns: Weight and Feature
+feature_names = ['place', 'depth', 'longitude', 'latitude']
+FI_GBM_model = pd.DataFrame({'Weight': feature_importances, 'Feature': feature_names})
+# Print the feature importances
+FI_GBM_model.sort_values(by='Weight',ascending=False)
 
-# Lower Features Importance
-st.write('GBM lower prediction Features Permutation Importance')
-GBM_perm_lower = PermutationImportance(qGBM_model_lower, random_state=0).fit(X_test, np.log1p(y_test))
-FI_GBM_lower = eli5.show_weights(GBM_perm_lower, feature_names = X_test.columns.tolist())
-FI_GBM_lower
+plt.rcParams['figure.figsize']=(10,10)
+FI_GBM_model_values = FI_GBM_model.values.tolist()
+fig, ax = plt.subplots()
+plt.barh([row[1] for row in FI_GBM_model_values], [row[0] for row in FI_GBM_model_values])
+plt.title('GBM mean prediction Features Permutation Importance', fontsize=30)
+ax.set_xlabel("Weight", fontsize=15)
+ax.set_ylabel("Feature",fontsize=15)
+plt.yticks(fontsize=35)
+plt.xticks(fontsize=15)
+st.pyplot(fig)
 
-# Median Features Importance
-st.write('GBM median prediction Features Permutation Importance')
-GBM_perm_median = PermutationImportance(qGBM_model_median, random_state=0).fit(X_test, np.log1p(y_test))
-FI_GBM_median = eli5.show_weights(GBM_perm_median, feature_names = X_test.columns.tolist())
-FI_GBM_median
 
-# Upper Features Importance
-st.write('GBM upper prediction Features Permutation Importance')
-GBM_perm_upper = PermutationImportance(qGBM_model_upper, random_state=0).fit(X_test, np.log1p(y_test))
-FI_GBM_upper = eli5.show_weights(GBM_perm_upper, feature_names = X_test.columns.tolist())
-FI_GBM_upper
+
+
 
 
 
