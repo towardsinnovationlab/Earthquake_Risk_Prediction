@@ -8,7 +8,6 @@ plotly.express
 datetime
 scipy
 statsmodels
-#tensorflow
 sklearn==1.2.2
 eli5
 pickle5
