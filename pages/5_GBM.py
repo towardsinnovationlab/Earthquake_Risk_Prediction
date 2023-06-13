@@ -73,7 +73,7 @@ def boxplot2(data1,data2, var):
 
 # Model
 # loading in the model to predict on the data
-with open('GBM_model.pkl', 'rb') as pickle_in:
+with open('./data/GBM_model.pkl', 'rb') as pickle_in:
     GBM_regressor = pickle.load(pickle_in)
 
 # prediction
