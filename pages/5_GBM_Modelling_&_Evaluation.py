@@ -371,24 +371,23 @@ GBM_perm_mean = PermutationImportance(GBM_model, random_state=0).fit(X_test, np.
 # Create a dataframe with feature importances and names
 FI_GBM_mean = pd.DataFrame(dict(
     feature_names=X_test.columns.tolist(),
-    feat_imp=GBM_perm_mean.feature_importances_,
+    feature_importance=GBM_perm_mean.feature_importances_,
     std=GBM_perm_mean.feature_importances_std_,
 ))
 
 # Sort the dataframe by feature importance
-#df_fi = df_fi.sort_values('feat_imp', ascending=False)
+#df_fi = df_fi.sort_values('feature_importance', ascending=False)
 
 # Display the dataframe as a table
 st.table(FI_GBM_mean)
 
-plt.rcParams['figure.figsize']=(10,10)
-FI_GBM_mean_values = FI_GBM_mean.values
-fig, ax = plt.subplots()
-plt.barh([row[1] for row in FI_GBM_mean_values], [row[0] for row in FI_GBM_mean_values])
-plt.title('GBM mean prediction Features Permutation Importance', fontsize=30)
-ax.set_xlabel("Weight", fontsize=15)
-ax.set_ylabel("Feature",fontsize=15)
-plt.yticks(fontsize=35)
-plt.xticks(fontsize=15)
-st.pyplot(fig)
+
+# Create a horizontal barplot with feature importances
+st.bar_chart(
+    data=FI_GBM_mean,
+    x="feature_importance",
+    y="feature_names",
+    orientation="horizontal",
+    use_container_width=True,
+)
 
