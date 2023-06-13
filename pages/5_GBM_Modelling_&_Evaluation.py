@@ -368,8 +368,21 @@ results_tsplot(qgbm_lower_, gbm_mean_, qgbm_median_, qgbm_upper_,'GBM')
 # Mean Features Importance
 st.write('GBM mean prediction Features Permutation Importance')
 GBM_perm_mean = PermutationImportance(GBM_model, random_state=0).fit(X_test, np.log1p(y_test))
-FI_GBM_mean = eli5.show_weights(GBM_perm_mean, feature_names = X_test.columns.tolist())
-FI_GBM_mean
+# Create a dataframe with feature importances and names
+df_fi = pd.DataFrame(dict(
+    feature_names=X_test.columns.tolist(),
+    feat_imp=GBM_perm_mean.feature_importances_,
+    std=GBM_perm_mean.feature_importances_std_,
+))
+
+# Sort the dataframe by feature importance
+df_fi = df_fi.sort_values('feat_imp', ascending=False)
+
+# Display the dataframe as a table
+st.table(df_fi)
+
+#FI_GBM_mean = eli5.show_weights(GBM_perm_mean, feature_names = X_test.columns.tolist())
+#FI_GBM_mean
 
 
 def mse(y_true, y_pred):
