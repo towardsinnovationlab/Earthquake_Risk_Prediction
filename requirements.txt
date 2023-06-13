@@ -8,4 +8,8 @@ plotly.express
 datetime
 scipy
 statsmodels
+tensorflow
+sklearn
+eli5
+pickle5
 
