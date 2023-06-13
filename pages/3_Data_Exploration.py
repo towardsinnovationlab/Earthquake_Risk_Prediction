@@ -17,7 +17,7 @@ warnings.simplefilter(action='ignore', category=FutureWarning)
 
 df = pd.read_csv('./data/train.csv',index_col=0,parse_dates=True)
 
-#df_cleaned = pd.read_csv('./data/train_cleaned.csv',index_col=0,parse_dates=True)
+df_cleaned = pd.read_csv('./data/train_cleaned.csv',index_col=0,parse_dates=True)
 
 if st.checkbox('Show original data'):
     st.write(df)
@@ -34,15 +34,15 @@ After data cleaning activity the data set is composed by 5 variables and 8.999 r
 st.subheader("Summary Statistics")
 
 # Filter data frmae with homogeneous magnitude type 
-df1=df[df['magType']=='mb']
+#df1=df[df['magType']=='mb']
 # drop not more helpful variables (type, magType and magSource, because uniques)
-df2 = df1.drop(['magType','type','magSource','locationSource'], axis=1)
-df3 = df2.copy()
+#df2 = df1.drop(['magType','type','magSource','locationSource'], axis=1)
+#df3 = df2.copy()
 # include date time variables for analysis
-df3['year'] = pd.DatetimeIndex(df3.index).year 
+#df3['year'] = pd.DatetimeIndex(df3.index).year 
 # Drop head and tail with inconsistent number of observations 
-df3_ = df3.query('year >= 1980 and year <= 2009')
-df_cleaned = df3_.drop(['year'], axis=1)
+#df3_ = df3.query('year >= 1980 and year <= 2009')
+#df_cleaned = df3_.drop(['year'], axis=1)
 
 # Formatting features
 df_cleaned.index = pd.to_datetime(df_cleaned.index)
