@@ -9,6 +9,6 @@ datetime
 statsmodels
 eli5
 pickle5
-sklearn
+scikit-learn
 
 
