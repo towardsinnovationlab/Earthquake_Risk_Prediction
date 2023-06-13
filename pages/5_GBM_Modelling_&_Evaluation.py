@@ -381,13 +381,22 @@ FI_GBM_mean = pd.DataFrame(dict(
 # Display the dataframe as a table
 st.table(FI_GBM_mean)
 
+# Create a horizontal barplot with feature importances
+plt.figure(figsize=(10, 5))
+plt.barh(y=df_fi["feature_names"], width=df_fi["feature_importance"], color="red")
+plt.title("GBM mean prediction Features Permutation Importance")
+plt.xlabel("Importance")
+plt.ylabel("Feature")
+
+# Display the chart with streamlit
+st.pyplot()
 
 # Create a horizontal barplot with feature importances
-st.bar_chart(
-    data=FI_GBM_mean,
-    x="feature_importance",
-    y="feature_names",
-    orientation="horizontal",
-    use_container_width=True,
-)
+#st.bar_chart(
+#    data=FI_GBM_mean,
+#    x="feature_importance",
+#    y="feature_names",
+#    orientation="horizontal",
+#    use_container_width=True,
+#)
 
