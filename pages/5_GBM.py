@@ -25,7 +25,7 @@ st.title("Gradient Boosting Machine model")
 # vis results
 def tsmultiplot(data1,data2,var):
     plt.rcParams['figure.figsize']=(20,10)
-    fif=plt.figure()
+    fig=plt.figure()
     data1_ = pd.DataFrame(data1).reset_index()
     data2_ = pd.DataFrame(data2, columns=['mag_pred'])
     data_new = pd.concat([data1_, data2_], axis=1).set_index("time")
