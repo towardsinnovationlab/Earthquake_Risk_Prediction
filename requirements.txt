@@ -6,10 +6,9 @@ seaborn
 feature_engine
 plotly.express
 datetime
-scipy
 statsmodels
 sklearn
 eli5
 pickle5
-tensorflow
+
 
