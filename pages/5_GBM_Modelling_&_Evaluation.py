@@ -301,6 +301,7 @@ df_gbm = pd.DataFrame(data=df_gbm, columns=['model','evaluation',
                                            'train_upper','test_upper'])
 
 st.subheader("Results")
+st.write("mean prediction, lower quantile=0.05, median quantile=0.50, upper quantile=0.95")
 df_gbm
 
 # create data as a list of dictionaries
