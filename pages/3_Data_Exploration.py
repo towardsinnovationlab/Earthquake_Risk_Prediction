@@ -157,6 +157,16 @@ st.plotly_chart(fig, use_container_width=True)
 st.subheader("target variable")
 plot_target(df4, var='mag')
 
+with sns.plotting_context("paper"):
+    fig, ax = plt.subplots(nrows=5, ncols=5, figsize=[10, 10])
+    for i, ax_ in enumerate(ax.flatten()):
+        lag_series = df4["mag"].shift(i + 1)
+        pd.plotting.lag_plot(df4["mag"], lag=i + 1, ax=ax_)
+        ax_.set_title(f"Lag {i+1}")
+        ax_.ticklabel_format(style="sci", scilimits=(0, 0))
+    plt.tight_layout()
+st.pyplot(fig)    
+
 st.subheader("Categorical variables")
 plot_cat(df4, col1='place')
 
