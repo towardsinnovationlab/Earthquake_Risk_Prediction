@@ -112,6 +112,14 @@ def plot_target(data, var):
     plt.yticks(rotation=45, fontsize=15)
     plt.xticks(rotation=45, fontsize=15)
     
+    
+    plot_acf(df['mag'], lags=np.arange(len(df)))
+    plt.title('Autocorrelation Function Plot on Magnitude', fontsize=25)
+    plt.xlabel('Time', fontsize=15)
+    plt.ylabel('Value',fontsize=15)
+    plt.yticks(rotation=0, fontsize=15)
+    plt.xticks(rotation=45, fontsize=15)
+    
     st.pyplot(fig)
 
 # Vis Chart
