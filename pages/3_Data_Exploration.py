@@ -9,7 +9,7 @@ import datetime
 from pandas.plotting import autocorrelation_plot
 import scipy
 import scipy.stats as stats
-from statsmodels.graphics.tsaplots import plot_acf
+
 
 
 import warnings
@@ -156,16 +156,6 @@ st.plotly_chart(fig, use_container_width=True)
 
 st.subheader("target variable")
 plot_target(df4, var='mag')
-
-
-fig=plt.figure()
-plot_acf(df4['mag'], lags=np.arange(len(df4)))
-plt.title('Autocorrelation Function Plot on Magnitude', fontsize=15)
-plt.xlabel('Time', fontsize=15)
-plt.ylabel('Value',fontsize=15)
-plt.yticks(rotation=0, fontsize=15)
-plt.xticks(rotation=45, fontsize=15)
-st.pyplot(fig)
 
 st.subheader("Categorical variables")
 plot_cat(df4, col1='place')
