@@ -82,6 +82,7 @@ df_min
 
 # Vis Chart
 def plot_target(data, var):
+    fog=plt.figure()
     plt.rcParams['figure.figsize']=(15,5)
     plt.suptitle('Earthquake Magnitude Exploratory Data Analysis',fontsize=15)
     plt.subplot(1,3,1)
@@ -105,7 +106,7 @@ def plot_target(data, var):
     plt.yticks(rotation=45, fontsize=15)
     plt.xticks(rotation=45, fontsize=15)
     
-    plt.show()
+    st.pyplot(fig)
 
 # Vis Chart
 def plot_cat(data, col1):
