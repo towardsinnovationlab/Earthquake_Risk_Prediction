@@ -85,8 +85,8 @@ df_min
 # Vis Chart
 def plot_target(data, var):
     fig=plt.figure()
-    plt.rcParams['figure.figsize']=(15,5)
-    plt.suptitle('Earthquake Magnitude Exploratory Data Analysis',fontsize=15)
+    plt.rcParams['figure.figsize']=(10,5)
+    plt.suptitle('Earthquake Magnitude Exploratory Data Analysis',fontsize=20)
     plt.subplot(1,3,1)
     x=data[var]
     plt.hist(x,color='green',edgecolor='black')
