@@ -34,6 +34,8 @@ After data cleaning activity the data set is composed by 5 variables and 8.999 r
 
 st.subheader("Summary Statistics")
 
+# formatting index 
+df.index = pd.to_datetime(df.index)
 # Filter data frmae with homogeneous magnitude type 
 df1=df[df['magType']=='mb']
 # drop not more helpful variables (type, magType and magSource, because uniques)
