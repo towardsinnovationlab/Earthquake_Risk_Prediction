@@ -147,7 +147,6 @@ def plot_num(data, var):
     
     st.pyplot(fig)
 
-
 fig=px.density_mapbox(df4, lat='latitude',lon='longitude',radius=1,
                     zoom=3.5, mapbox_style='stamen-terrain',center=dict(lat=11,lon=125),
                       title='Earthquake Magnitude Geographical Distribution')
