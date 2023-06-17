@@ -82,17 +82,16 @@ df_min
 
 # Vis Chart
 def plot_target(data, var):
-    plt.rcParams['figure.figsize']=(20,15)
-    fig = plt.figure()
-    plt.suptitle('Earthquake Magnitude Exploratory Data Analysis',fontsize=25)
-    plt.subplot(2,2,1)
+    plt.rcParams['figure.figsize']=(15,5)
+    plt.suptitle('Earthquake Magnitude Exploratory Data Analysis',fontsize=15)
+    plt.subplot(1,3,1)
     x=data[var]
     plt.hist(x,color='green',edgecolor='black')
     plt.title('{} histogram'.format(var))
     plt.yticks(rotation=45, fontsize=15)
     plt.xticks(rotation=45, fontsize=15)
     
-    plt.subplot(2,2,2)
+    plt.subplot(1,3,2)
     x=data[var]
     sns.boxplot(x, color="orange")
     plt.title('{} boxplot'.format(var))
@@ -100,21 +99,13 @@ def plot_target(data, var):
     plt.xticks(rotation=45, fontsize=15)
     
     
-    plt.subplot(2,2,3)
+    plt.subplot(1,3,3)
     res = stats.probplot(data[var], plot=plt)
     plt.title('{} Q-Q plot'.format(var))
     plt.yticks(rotation=45, fontsize=15)
     plt.xticks(rotation=45, fontsize=15)
     
-    plt.subplot(2,2,4)
-    plot_acf(data[var], lags=np.arange(len(data)))
-    #plt.title('Autocorrelation Function Plot on Magnitude', fontsize=25)
-    #plt.xlabel('Time', fontsize=15)
-    #plt.ylabel('Value',fontsize=15)
-    #plt.yticks(rotation=0, fontsize=15)
-    #plt.xticks(rotation=45, fontsize=15)
-    
-    st.pyplot(fig)
+    plt.show()
 
 # Vis Chart
 def plot_cat(data, col1):
@@ -162,6 +153,16 @@ st.plotly_chart(fig, use_container_width=True)
 
 st.subheader("target variable")
 plot_target(df4, var='mag')
+
+fig=plt.figure()
+plt.rcParams['figure.figsize']=(10,5)
+plot_acf(df4['mag'], lags=np.arange(len(df4)))
+plt.title('Autocorrelation Function Plot on Magnitude', fontsize=15)
+plt.xlabel('Time', fontsize=15)
+plt.ylabel('Value',fontsize=15)
+plt.yticks(rotation=0, fontsize=15)
+plt.xticks(rotation=45, fontsize=15)
+st.pyplot(fig)
 
 st.subheader("Categorical variables")
 plot_cat(df4, col1='place')
