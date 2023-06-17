@@ -109,8 +109,8 @@ def plot_target(data, var):
     plt.subplot(2,2,4)
     plot_acf(data[var], lags=np.arange(len(data)))
     plt.title('Autocorrelation Function Plot on Magnitude', fontsize=25)
-    #plt.xlabel('Time', fontsize=15)
-    #plt.ylabel('Value',fontsize=15)
+    plt.xlabel('Time', fontsize=15)
+    plt.ylabel('Value',fontsize=15)
     plt.yticks(rotation=0, fontsize=15)
     plt.xticks(rotation=45, fontsize=15)
     
