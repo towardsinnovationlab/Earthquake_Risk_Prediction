@@ -158,7 +158,7 @@ plot_target(df4, var='mag')
 
 with sns.plotting_context("paper"):
     fig, ax = plt.subplots(nrows=5, ncols=5, figsize=[10, 10])
-    plt.suptitle('Earthquake Magnitude Exploratory Data Analysis',fontsize=20)
+    plt.suptitle('Earthquake Magnitude Autocorrelation Analysis',fontsize=20)
     for i, ax_ in enumerate(ax.flatten()):
         lag_series = df4["mag"].shift(i + 1)
         pd.plotting.lag_plot(df4["mag"], lag=i + 1, ax=ax_)
