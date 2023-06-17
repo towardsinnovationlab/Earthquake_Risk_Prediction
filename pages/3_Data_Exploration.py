@@ -156,7 +156,6 @@ st.subheader("target variable")
 plot_target(df4, var='mag')
 
 
-plt.rcParams['figure.figsize']=(10,5)
 fig=plt.figure()
 plot_acf(df4['mag'], lags=np.arange(len(df4)))
 plt.title('Autocorrelation Function Plot on Magnitude', fontsize=15)
