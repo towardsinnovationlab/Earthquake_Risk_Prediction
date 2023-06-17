@@ -9,6 +9,7 @@ import datetime
 from pandas.plotting import autocorrelation_plot
 import scipy
 import scipy.stats as stats
+from statsmodels.graphics.tsaplots import plot_acf
 
 
 import warnings
@@ -106,14 +107,7 @@ def plot_target(data, var):
     plt.xticks(rotation=45, fontsize=15)
     
     plt.subplot(2,2,4)
-    # autocorrelation plot 
-    autocorrelation_plot(df[var])
-    plt.title("{} vs time autocorrelation".format(var)) 
-    plt.yticks(rotation=45, fontsize=15)
-    plt.xticks(rotation=45, fontsize=15)
-    
-    
-    plot_acf(df['mag'], lags=np.arange(len(df)))
+    plot_acf(data['mag'], lags=np.arange(len(data)))
     plt.title('Autocorrelation Function Plot on Magnitude', fontsize=25)
     plt.xlabel('Time', fontsize=15)
     plt.ylabel('Value',fontsize=15)
