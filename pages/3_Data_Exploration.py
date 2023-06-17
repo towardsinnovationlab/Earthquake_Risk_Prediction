@@ -86,7 +86,7 @@ df_min
 def plot_target(data, var):
     fig=plt.figure()
     plt.rcParams['figure.figsize']=(10,5)
-    plt.title('Earthquake Magnitude Exploratory Data Analysis',fontsize=20)
+    plt.suptitle('Earthquake Magnitude Exploratory Data Analysis',fontsize=20)
     plt.subplot(1,3,1)
     x=data[var]
     plt.hist(x,color='green',edgecolor='black')
@@ -159,7 +159,7 @@ plot_target(df4, var='mag')
 
 with sns.plotting_context("paper"):
     fig, ax = plt.subplots(nrows=5, ncols=5, figsize=[10, 10])
-    plt.title('Earthquake Magnitude Exploratory Data Analysis',fontsize=20)
+    plt.suptitle('Earthquake Magnitude Exploratory Data Analysis',fontsize=20)
     for i, ax_ in enumerate(ax.flatten()):
         lag_series = df4["mag"].shift(i + 1)
         pd.plotting.lag_plot(df4["mag"], lag=i + 1, ax=ax_)
