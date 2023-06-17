@@ -155,8 +155,9 @@ st.plotly_chart(fig, use_container_width=True)
 st.subheader("target variable")
 plot_target(df4, var='mag')
 
-fig=plt.figure()
+
 plt.rcParams['figure.figsize']=(10,5)
+fig=plt.figure()
 plot_acf(df4['mag'], lags=np.arange(len(df4)))
 plt.title('Autocorrelation Function Plot on Magnitude', fontsize=15)
 plt.xlabel('Time', fontsize=15)
