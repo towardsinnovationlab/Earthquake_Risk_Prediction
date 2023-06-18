@@ -2,6 +2,9 @@ import streamlit as st
 
 st.title("Introduction")
 
+st.image("./images/natural-disaster.png", width=500)
+st.write("worldatlas")
+
 st.markdown("""
 
 An earthquake is a natural event that happen when the ground shakes and moves. It is caused by the movement of tectonic plates along faults 
