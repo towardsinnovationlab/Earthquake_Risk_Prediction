@@ -10,7 +10,7 @@ Data are coming from a Kaggle hackathon, provided by the United States Geologica
 Data have been cleaned into homogeneous magnitude type and having more consistent values, so the data set has been reduced in dimensions (columns and rows) 
 and time horizon.
 
-Columns (index not considered): from 9 to 5
+Variables: from 9 to 5
 
 Rows: from 10.188 to 8.999
 
