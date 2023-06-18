@@ -497,6 +497,7 @@ st.pyplot(fig)
 
 st.subheader("""Partial Dependence Plot""")
 
+st.write("""Depth variable that is the most relevant, loooking in the Partial Dependence Plot it changes pattern with the upper quantile""")
 # Mean Partial Dependence Plot
 plt.rcParams['figure.figsize']=(25,15)
 fig, axs = plt.subplots(nrows=2, ncols=2)
