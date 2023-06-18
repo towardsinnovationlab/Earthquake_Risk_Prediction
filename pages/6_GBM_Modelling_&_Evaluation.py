@@ -409,62 +409,8 @@ coverage_GBM = np.logical_and(
 coverage_GBM
 
 
-#lower quantile
-fig=plt.figure()
-lower_quantile = np.array([percentile_GBM_lower])
-labels = ['GBM']
-colors = ['green']
-plt.bar(labels, lower_quantile, color=colors)
-# Set the y scale to 0-1 and format it as percentage
-plt.ylim(0, 1)
-plt.yticks(np.arange(0, 1.1, 0.1), [f'{x*100:.0f}%' for x in np.arange(0, 1.1, 0.1)])
-# Draw the horizontal line and add the text
-plt.axhline(y=0.05, color='red', linestyle='-', linewidth=5)
-plt.text(5.0, 0.05, '5% percentile', color='red', fontsize=25, horizontalalignment='left')
-plt.title('Lower Quantile Calibration Assesment by ML', fontsize=30)
-plt.xlabel('Algorithms',fontsize=30)
-plt.ylabel('Lower Quantile',fontsize=30)
-plt.yticks(fontsize=25)
-plt.xticks(fontsize=25)
-st.pyplot(fig)
 
-#median quantile
-fig=plt.figure()
-median_quantile = np.array([percentile_GBM_median])
-labels = ['GBM']
-colors = ['green']
-plt.bar(labels, median_quantile, color=colors)
-# Set the y scale to 0-1 and format it as percentage
-plt.ylim(0, 1)
-plt.yticks(np.arange(0, 1.1, 0.1), [f'{x*100:.0f}%' for x in np.arange(0, 1.1, 0.1)])
-# Draw the horizontal line and add the text
-plt.axhline(y=0.50, color='red', linestyle='-', linewidth=5)
-plt.text(5.0, 0.50, '50% percentile', color='red', fontsize=25, horizontalalignment='left')
-plt.title('Median Quantile Calibration Assesment by ML', fontsize=30)
-plt.xlabel('Algorithms',fontsize=30)
-plt.ylabel('Median Quantile',fontsize=30)
-plt.yticks(fontsize=25)
-plt.xticks(fontsize=25)
-st.pyplot(fig)
 
-# upper quantile
-fig=plt.figure()
-upper_quantile = np.array([percentile_GBM_upper])
-labels = ['GBM']
-colors = ['green']
-plt.bar(labels, upper_quantile, color=colors)
-# Set the y scale to 0-1 and format it as percentage
-plt.ylim(0, 1)
-plt.yticks(np.arange(0, 1.1, 0.1), [f'{x*100:.0f}%' for x in np.arange(0, 1.1, 0.1)])
-# Draw the horizontal line and add the text
-plt.axhline(y=0.95, color='red', linestyle='-', linewidth=5)
-plt.text(5.0, 0.95, '95% percentile', color='red', fontsize=25, horizontalalignment='left')
-plt.title('Upper Quantile Calibration Assesment by ML', fontsize=30)
-plt.xlabel('Algorithms',fontsize=30)
-plt.ylabel('Upper Quantile',fontsize=30)
-plt.yticks(fontsize=25)
-plt.xticks(fontsize=25)
-st.pyplot(fig)
 
 # Mean Features Importance
 #st.write('GBM mean prediction Features Permutation Importance')
