@@ -2,8 +2,9 @@ import streamlit as st
 
 st.title("Introduction")
 
-st.image("./images/earthquake-cause.png", width=500)
 st.write("worldatlas")
+st.image("./images/earthquake-cause.png", width=500)
+
 
 st.markdown("""
 
@@ -17,7 +18,9 @@ high-risk areas pay higher rates while those who live in low-risk areas pay lowe
 
 Given an historical time series of Philippines earthquakes from 1979 to 2010, the purpose of this job is to predict the magnitude of 
 the next earthquakes in the last year by the help of Supervised Learning models.
+
 Magnitude variable is the outcome and it can be used as a feature in a pricing database to improve the quote of the risk premium.
+
 When we use GLM in a pricing, we estimate the conditional mean of the response variable given the predictor variables. 
 In estimating hazard events like earthquakes become relevant to have a measure of the prediction uncertainty, and the quantile regression solves 
 this issue replacing a single value prediction by prediction intervals. 
