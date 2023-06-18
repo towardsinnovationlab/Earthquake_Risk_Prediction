@@ -375,6 +375,11 @@ qgbm_median_ = np.expm1(qgbm_median_te).reshape(-1,1)
 qgbm_upper_ = np.expm1(qgbm_upper_te).reshape(-1,1)
 gbm_mean_ = np.expm1(gbm_mean_te).reshape(-1,1)
 
+st.write("""In the following charts are reported the projection of results in 2009, firstly comparing actual values with mean ression values, 
+and then actual values with quantile regression. The red line represents the median quantile and with green color is reported the prediction
+interval. The median quantile generalize well the actual values and the prediction interval is large, able to handle spikes.
+""")
+
 tsmultiplot(y_test, gbm_mean_, 'GBM')
 
 boxplot2(y_test, gbm_mean_, 'GBM')
