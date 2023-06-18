@@ -432,6 +432,12 @@ plt.ylabel("Feature")
 # Display the chart with streamlit
 st.pyplot(fig)
 
+st.subheader("""Feature Importance""")
+
+st.write("""In the charts are reported the permutation feature importance and we can see that depth has the degree of importance 
+with the highest value in several points, seems to be coherent in every prediction.
+""")
+
 # Lower Features Importance
 #st.write('GBM lower prediction Features Permutation Importance')
 GBM_perm_lower = PermutationImportance(qGBM_model_lower, random_state=0).fit(X_test, np.log1p(y_test))
@@ -488,26 +494,6 @@ plt.xlabel("Importance")
 plt.ylabel("Feature")
 # Display the chart with streamlit
 st.pyplot(fig)
-
-# coverage
-fig=plt.figure()
-coverage = np.array([coverage_GBM])
-labels = ['GBM']
-colors = ['green']
-plt.bar(labels, coverage, color=colors)
-# Set the y scale to 0-1 and format it as percentage
-plt.ylim(0, 1)
-plt.yticks(np.arange(0, 1.1, 0.1), [f'{x*100:.0f}%' for x in np.arange(0, 1.1, 0.1)])
-# Draw the horizontal line and add the text
-plt.axhline(y=0.90, color='red', linestyle='-', linewidth=5)
-#plt.text(5.0, 0.90, '90% percentile', color='red', fontsize=25, horizontalalignment='left')
-plt.title('Prediction Interval Coverage by ML', fontsize=30)
-plt.xlabel('Algorithms',fontsize=30)
-plt.ylabel('Coverage',fontsize=30)
-plt.yticks(fontsize=25)
-plt.xticks(fontsize=25)
-st.pyplot(fig)
-
 
 # Mean Partial Dependence Plot
 plt.rcParams['figure.figsize']=(25,15)
