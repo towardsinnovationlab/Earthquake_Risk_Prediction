@@ -68,7 +68,7 @@ df4['month'] = pd.DatetimeIndex(df4.index).month
 df4['day'] = pd.DatetimeIndex(df4.index).day
 df4['hour'] = pd.DatetimeIndex(df4.index).hour
 
-st.write("First ten max magnitude earthquakes")
+st.markdown("First ten max magnitude earthquakes")
 df_new = df4.copy()
 df_new = df_new.sort_values(by='mag', ascending=False)
 df_max= df_new.reset_index()
