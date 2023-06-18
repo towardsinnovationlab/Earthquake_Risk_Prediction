@@ -66,7 +66,7 @@ df4['month'] = pd.DatetimeIndex(df4.index).month
 df4['day'] = pd.DatetimeIndex(df4.index).day
 df4['hour'] = pd.DatetimeIndex(df4.index).hour
 
-st.markdown("""Magnitude range is between 3.0 and 6.1, but the scales can reach also 6.5.The highest island with earthquake was Mindanao island and the 
+st.write("""Magnitude range is between 3.0 and 6.1, but the scales can reach also 6.5.The highest island with earthquake was Mindanao island and the 
 lowest Samar.Looking at the relationship between depth and magnitude there is no linear relationship between magnitude and depth, because it 
 changes and can be low both for low magnitude and high magnitude.""")
 
