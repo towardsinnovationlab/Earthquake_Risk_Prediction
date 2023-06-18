@@ -393,23 +393,24 @@ The first analysis is to look if the predicted quantiles match the observed quan
 The model seems well calibrated for the upper quantile and the median quantile, instead seems to be weak for the lower quantile.
 At the end gradient boosting is able to capture almost all of the true values within its prediction interval.""")
 
-# Lower Percentile
-percentile_GBM_lower=(qgbm_lower_ > y_test.values).mean()
-percentile_GBM_lower
-# Median Percentile
+# Lower Quantile
+st.write("""Lower Quantile - > bad""")
+quantile_GBM_lower=(qgbm_lower_ > y_test.values).mean()
+quantile_GBM_lower
+# Median Quantile
+st.write("""Median Quantile - > good""")
 percentile_GBM_median=(qgbm_median_ > y_test.values).mean()
 percentile_GBM_median
-# Upper Percentile
-percentile_GBM_upper=(qgbm_upper_ > y_test.values).mean()
-percentile_GBM_upper
+# Upper Quantile
+st.write("""Upper Quantile - > good""")
+quantile_GBM_upper=(qgbm_upper_ > y_test.values).mean()
+quantile_GBM_upper
 # Coverage
+st.write("""Prediction Interval Coverage - > good""")
 coverage_GBM = np.logical_and(
                qgbm_lower_ < y_test.values,
                qgbm_upper_ > y_test.values).mean()
 coverage_GBM
-
-
-
 
 
 # Mean Features Importance
