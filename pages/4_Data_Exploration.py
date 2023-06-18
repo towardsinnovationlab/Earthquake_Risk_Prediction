@@ -85,8 +85,8 @@ df_min
 # Vis Chart
 def plot_target(data, var):
     fig=plt.figure()
-    plt.rcParams['figure.figsize']=(10,5)
-    plt.suptitle('Earthquake Magnitude Exploratory Data Analysis',fontsize=20)
+    plt.rcParams['figure.figsize']=(5,5)
+    plt.suptitle('Earthquake Magnitude Exploratory Data Analysis',fontsize=15)
     plt.subplot(1,3,1)
     x=data[var]
     plt.hist(x,color='green',edgecolor='black')
@@ -112,7 +112,7 @@ def plot_target(data, var):
 
 # Vis Chart
 def plot_cat(data, col1):
-    plt.rcParams['figure.figsize']=(20,10)
+    plt.rcParams['figure.figsize']=(15,10)
     fig = plt.figure()
     sns.countplot(x=data[col1], data=data).set_title("Barplot {} Variable Distribution".format(col1), fontsize=20)
     plt.yticks(rotation=0, fontsize=15)
