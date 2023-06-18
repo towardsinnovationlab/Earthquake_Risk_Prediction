@@ -27,5 +27,5 @@ this issue replacing a single value prediction by prediction intervals.
 Quantile regression allows for flexible modelling of the entire distribution of the response variable, it estimates the conditional quantiles 
 of the response variable, given the explanatory variables.
 
-For an overall overview of the analysis look the [repository](https://github.com/claudio1975/Earthquakes_Risk_Modelling)
+For an overall overview of the analysis with all models employed look the [repository](https://github.com/claudio1975/Earthquakes_Risk_Modelling)
 """)
