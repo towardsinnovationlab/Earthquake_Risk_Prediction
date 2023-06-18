@@ -308,7 +308,7 @@ st.write("""The model has fitted in the noraml way with the mean regression and 
 The dataset was splitted in two parts: train set from 1980 to 2008 and test set equal to 2009 as test set used for prediction.
 In the training process has been used the time series split cross validation with 5 folds suitable for a proper evaluation splitting strategies 
 that takes into account the temporal structure of the dataset to evaluate the model's ability to predict data points in the future.
-Gradient Boosting Machine in scikit-learn allows to model the quantile loss function, just dclare it and so on the quantile point.
+Gradient Boosting Machine in scikit-learn allows to model the quantile loss function, just declare it and so on the quantile point.
 Models Have been trained with default hyperparameters values, given several points to train. Default values are enough to understand 
 if the model is suitable for your data points. 
 """)
