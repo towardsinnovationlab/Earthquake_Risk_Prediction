@@ -233,7 +233,7 @@ ts_cv = TimeSeriesSplit(n_splits=5)
 # splits
 splits = list(ts_cv.split(X_t, y))
 
-# Evaluation following quantile approach
+# Modelling 
 GBM = GradientBoostingRegressor(random_state=0)
 param_grid = {}
 GBM_model = GridSearchCV(GBM,param_grid,cv=ts_cv)
@@ -241,6 +241,7 @@ GBM_model.fit(X_train, np.log1p(y_train))
 gbm_mean_tr = GBM_model.predict(X_train)
 gbm_mean_te = GBM_model.predict(X_test)
 
+# Modelling with quantile approach
 qGBM = GradientBoostingRegressor(loss="quantile", alpha=0.05, random_state=0)
 param_grid = {}
 qGBM_model_lower = GridSearchCV(qGBM,param_grid,cv=ts_cv)
@@ -299,6 +300,17 @@ df_gbm = pd.DataFrame(data=df_gbm, columns=['model','evaluation',
                                             'train_mean','test_mean',
                                            'train_median','test_median',
                                            'train_upper','test_upper'])
+
+
+st.write("""The model has fitted in the noraml way with the mean regression and then with 3 quantile points: 0.05 lower quantile, 
+0.50 median quantile, and 0.95 upper quantile.
+The dataset was splitted in two parts: train set from 1980 to 2008 and test set equal to 2009 as test set used for prediction.
+In the training process has been used the time series split cross validation with 5 folds suitable for a proper evaluation splitting strategies 
+that takes into account the temporal structure of the dataset to evaluate the model's ability to predict data points in the future.
+Gradient Boosting Machine in scikit-learn allows to model the quantile loss function, just dclare it and so on the quantile point.
+Models Have been trained with default hyperparameters values, given several points to train. Default values are enough to understand 
+if the model is suitable for your data points. 
+""")
 
 st.subheader("Results")
 st.write("mean prediction, lower quantile=0.05, median quantile=0.50, upper quantile=0.95")
