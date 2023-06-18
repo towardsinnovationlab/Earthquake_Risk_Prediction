@@ -386,7 +386,12 @@ boxplot2(y_test, gbm_mean_, 'GBM')
 
 results_tsplot(qgbm_lower_, gbm_mean_, qgbm_median_, qgbm_upper_,'GBM')
 
-st.subheader("""QuantileCalibration Assessment""")
+st.subheader("""Quantile Calibration Assessment""")
+
+st.write("""How can we trust about performance metrics results?
+The first analysis is to look if the predicted quantiles match the observed quantiles for each quantile point.
+The model seems well calibrated for the upper quantile and the median quantile, instead seems to be weak for the lower quantile.
+At the end gradient boosting is able to capture almost all of the true values within its prediction interval.""")
 
 
 # Mean Features Importance
