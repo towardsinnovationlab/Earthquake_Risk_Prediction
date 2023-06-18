@@ -66,8 +66,8 @@ df4['month'] = pd.DatetimeIndex(df4.index).month
 df4['day'] = pd.DatetimeIndex(df4.index).day
 df4['hour'] = pd.DatetimeIndex(df4.index).hour
 
-st.write("""Magnitude range is between 3.0 and 6.1, but the scales can reach also 6.5.The highest island with earthquake was Mindanao island and the 
-lowest Samar.Looking at the relationship between depth and magnitude there is no linear relationship between magnitude and depth, because it 
+st.write("""Magnitude range is between 3.0 and 6.1, but the scales can reach also 6.5. The highest island with earthquake was Mindanao island and the 
+lowest Samar. Looking at the relationship between depth and magnitude there is no linear relationship between magnitude and depth, because it 
 changes and can be low both for low magnitude and high magnitude.""")
 
 st.subheader("First ten max magnitude earthquakes")
@@ -156,6 +156,11 @@ fig=px.density_mapbox(df4, lat='latitude',lon='longitude',radius=1,
 st.plotly_chart(fig, use_container_width=True)
 
 st.subheader("target variable")
+
+st.write("""After removing first year and the last year from the distribution, the outcome seems to assume a shape close to the Normal distribution 
+with slight skewness, and the presence of outliers.
+From the analysis with past values is clear that there is not the autocorrelation and for this reason no generation of lag features.
+""")
 plot_target(df4, var='mag')
 
 with sns.plotting_context("paper"):
@@ -170,9 +175,16 @@ with sns.plotting_context("paper"):
 st.pyplot(fig)    
 
 st.subheader("Categorical variables")
+
+st.write("""The greater observations concern Mindanao Island, that also have registered highest magnitude.
+""")
 plot_cat(df4, col1='place')
 
 st.subheader("Numerical variables")
+
+st.write("""Numerical features show skewness in the distribution and depth shows many outliers. 
+""")
+
 # Select numerical columns
 numerical_cols = [var for var in df4.columns if df4[var].dtype in ['float64','int64']]
 # Subset with numerical features
