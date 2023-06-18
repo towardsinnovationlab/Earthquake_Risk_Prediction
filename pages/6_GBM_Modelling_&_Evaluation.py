@@ -395,14 +395,19 @@ At the end gradient boosting is able to capture almost all of the true values wi
 
 # Lower Percentile
 percentile_GBM_lower=(qgbm_lower_ > y_test.values).mean()
+percentile_GBM_lower
 # Median Percentile
 percentile_GBM_median=(qgbm_median_ > y_test.values).mean()
+percentile_GBM_median
 # Upper Percentile
 percentile_GBM_upper=(qgbm_upper_ > y_test.values).mean()
+percentile_GBM_upper
 # Coverage
 coverage_GBM = np.logical_and(
                qgbm_lower_ < y_test.values,
                qgbm_upper_ > y_test.values).mean()
+coverage_GBM
+
 
 #lower quantile
 fig=plt.figure()
