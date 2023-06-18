@@ -506,7 +506,7 @@ features = ['latitude','longitude','depth','place']
 for i, feature in enumerate(features):
     ax = axs.flatten()[i]
     PartialDependenceDisplay.from_estimator(GBM_model, X_t, [feature], ax=ax, kind='average', random_state=0)
-    ax.set_title(f'Partial dependence of Earthquake Magnitude on {feature} with GBM model', fontsize=15)
+    ax.set_title(f'Partial dependence of Earthquake Magnitude on {feature} with GBM model', fontsize=20)
 st.pyplot(fig)
 
 # Lower Partial Dependence Plot
@@ -518,7 +518,7 @@ features = ['latitude','longitude','depth','place']
 for i, feature in enumerate(features):
     ax = axs.flatten()[i]
     PartialDependenceDisplay.from_estimator(qGBM_model_lower, X_t, [feature], ax=ax, kind='average', random_state=0)
-    ax.set_title(f'Partial dependence of Earthquake Magnitude on {feature} with GBM quantile', fontsize=15)
+    ax.set_title(f'Partial dependence of Earthquake Magnitude on {feature} with GBM quantile', fontsize=20)
 st.pyplot(fig)
 
 # Median Partial Dependence Plot
@@ -530,7 +530,7 @@ features = ['latitude','longitude','depth','place']
 for i, feature in enumerate(features):
     ax = axs.flatten()[i]
     PartialDependenceDisplay.from_estimator(qGBM_model_median, X_t, [feature], ax=ax, kind='average', random_state=0)
-    ax.set_title(f'Partial dependence of Earthquake Magnitude on {feature} with GBM quantile', fontsize=15)
+    ax.set_title(f'Partial dependence of Earthquake Magnitude on {feature} with GBM quantile', fontsize=20)
 st.pyplot(fig)
 
 # Upper Partial Dependence Plot
@@ -542,7 +542,7 @@ features = ['latitude','longitude','depth','place']
 for i, feature in enumerate(features):
     ax = axs.flatten()[i]
     PartialDependenceDisplay.from_estimator(qGBM_model_upper, X_t, [feature], ax=ax, kind='average', random_state=0)
-    ax.set_title(f'Partial dependence of Earthquake Magnitude on {feature} with GBM quantile', fontsize=15)
+    ax.set_title(f'Partial dependence of Earthquake Magnitude on {feature} with GBM quantile', fontsize=20)
 st.pyplot(fig)
 
 
