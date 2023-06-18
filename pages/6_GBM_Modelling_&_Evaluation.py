@@ -80,7 +80,7 @@ def results_tsplot(results_lower, results_mean, results_median, results_upper,mo
     # Set the x-axis label and title
     ax.set_xlabel('Time', fontsize=12)
     ax.set_ylabel('Magnitude', fontsize=12)
-    ax.set_title('{} Regression Results'.format(model), fontsize=15, fontweight='bold')
+    ax.set_title('{} Regression Results'.format(model), fontsize=25, fontweight='bold')
 
     # Set the tick label font size
     ax.tick_params(axis='both', labelsize=12)
@@ -301,6 +301,7 @@ df_gbm = pd.DataFrame(data=df_gbm, columns=['model','evaluation',
                                            'train_median','test_median',
                                            'train_upper','test_upper'])
 
+st.subheader("Modelling")
 
 st.write("""The model has fitted in the noraml way with the mean regression and then with 3 quantile points: 0.05 lower quantile, 
 0.50 median quantile, and 0.95 upper quantile.
@@ -313,7 +314,11 @@ if the model is suitable for your data points.
 """)
 
 st.subheader("Results")
-st.write("mean prediction, lower quantile=0.05, median quantile=0.50, upper quantile=0.95")
+
+st.write("""Are reported evaluation results for train and test set with mean prediction, lower quantile=0.05, median quantile=0.50, 
+upper quantile=0.95.
+Results are coming from the angles and lines are just drafted for a better visualization.
+""")
 df_gbm
 
 # create data as a list of dictionaries
