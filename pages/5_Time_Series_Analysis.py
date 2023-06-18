@@ -45,7 +45,7 @@ def boxplot(data,var):
     plt.rcParams['figure.figsize']=(20,10)
     fig = plt.figure()
     sns.boxplot(x=var, y='mag', data=data, linewidth=5)
-    plt.suptitle('Magnitude Distribution per {}'.format(var),fontsize=25)
+    plt.suptitle('Magnitude Distribution per {}'.format(var),fontsize=30)
     plt.xlabel('{}'.format(var), fontsize=15)
     plt.ylabel('mag', fontsize=15)
     plt.yticks(rotation=0,fontsize=15)
@@ -59,7 +59,7 @@ def tsplot(data,var,period):
         plt.plot(data[var], linewidth=3, color='Orange')
     else:
         plt.plot(data[var].loc[period], linewidth=3,color='Orange') 
-    plt.suptitle('Earthquake Magnitude Time Series',fontsize=25)
+    plt.suptitle('Earthquake Magnitude Time Series',fontsize=30)
     plt.xlabel('Time', fontsize=15)
     plt.ylabel('{}'.format(var), fontsize=15)
     plt.yticks(rotation=0, fontsize=15)
@@ -138,7 +138,7 @@ df_rolling.filter(
     axis=1  # Filter by column names.
 ).plot(color=colors, linewidth=3, ax=ax) # Plot on the axis object
 my_labels=['Mag_window_day', 'Mag_window_week','Mag_window_month','Mag_window_year']
-plt.suptitle("Rolling window mean of Earthquake Magnitude",fontsize=25)
+plt.suptitle("Rolling window mean of Earthquake Magnitude",fontsize=30)
 plt.xlabel('Time', fontsize=20)
 plt.ylabel('mag', fontsize=20)
 plt.yticks(rotation=0)
