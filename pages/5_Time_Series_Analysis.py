@@ -24,6 +24,13 @@ df = pd.read_csv('./data/train.csv',index_col=0,parse_dates=True)
 
 st.title("Time Series Analysis")
 
+st.write("""In the decomposition of the time series, there is no evidence of seasonality patterns, also trend doesn’t show specific up or down 
+patterns, but there is just a jump from 1996 to 2000, more clear looking at the rolling window.
+The last analysis has been done by looking at the stationarity of the series. From the rolling window mean of observations, 
+increasing window sizes have smoothed the shape over time. This allows the model to make use of behaviours seen at different time scales. 
+In the end, the Augmented Dickey-Fuller test, which uses an autoregressive model, rejects the null hypothesis which means the time series is 
+stationary, it doesn’t have a time-dependent structure.
+""")
 
 # formatting index 
 df.index = pd.to_datetime(df.index)
