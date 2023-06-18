@@ -155,7 +155,7 @@ fig=px.density_mapbox(df4, lat='latitude',lon='longitude',radius=1,
 
 st.plotly_chart(fig, use_container_width=True)
 
-st.subheader("target variable")
+st.subheader("Target variable")
 
 st.write("""After removing first year and the last year from the distribution, the outcome seems to assume a shape close to the Normal distribution 
 with slight skewness, and the presence of outliers.
