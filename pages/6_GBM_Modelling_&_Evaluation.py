@@ -375,9 +375,9 @@ qgbm_median_ = np.expm1(qgbm_median_te).reshape(-1,1)
 qgbm_upper_ = np.expm1(qgbm_upper_te).reshape(-1,1)
 gbm_mean_ = np.expm1(gbm_mean_te).reshape(-1,1)
 
-st.write("""In the following charts are reported the projection of results in 2009, firstly comparing actual values with mean ression values, 
+st.write("""In the following charts are reported the projection of results in 2009, firstly comparing actual values with mean regression prediction, 
 and then actual values with quantile regression. The red line represents the median quantile and with green color is reported the prediction
-interval. The median quantile generalize well the actual values and the prediction interval is large, able to handle spikes.
+interval. The median quantile generalize well the observations and the prediction interval is large, able to handle spikes.
 """)
 
 tsmultiplot(y_test, gbm_mean_, 'GBM')
@@ -385,6 +385,9 @@ tsmultiplot(y_test, gbm_mean_, 'GBM')
 boxplot2(y_test, gbm_mean_, 'GBM')
 
 results_tsplot(qgbm_lower_, gbm_mean_, qgbm_median_, qgbm_upper_,'GBM')
+
+st.subheader("""QuantileCalibration Assessment""")
+
 
 # Mean Features Importance
 #st.write('GBM mean prediction Features Permutation Importance')
