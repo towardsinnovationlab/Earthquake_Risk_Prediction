@@ -18,8 +18,6 @@ warnings.simplefilter(action='ignore', category=FutureWarning)
 
 df = pd.read_csv('./data/train.csv',index_col=0,parse_dates=True)
 
-#df_cleaned = pd.read_csv('./data/train_cleaned.csv',index_col=0,parse_dates=True)
-
 if st.checkbox('Show original data'):
     st.write(df)
 
@@ -68,14 +66,18 @@ df4['month'] = pd.DatetimeIndex(df4.index).month
 df4['day'] = pd.DatetimeIndex(df4.index).day
 df4['hour'] = pd.DatetimeIndex(df4.index).hour
 
-st.markdown("First ten max magnitude earthquakes")
+st.markdown("""Magnitude range is between 3.0 and 6.1, but the scales can reach also 6.5.The highest island with earthquake was Mindanao island and the 
+lowest Samar.Looking at the relationship between depth and magnitude there is no linear relationship between magnitude and depth, because it 
+changes and can be low both for low magnitude and high magnitude.""")
+
+st.subheader("First ten max magnitude earthquakes")
 df_new = df4.copy()
 df_new = df_new.sort_values(by='mag', ascending=False)
 df_max= df_new.reset_index()
 df_max=df_max[['place','mag','depth','year','month','day','hour']].head(10)
 df_max
 
-st.write("Last ten min magnitude earthquakes")
+st.subheader("Last ten min magnitude earthquakes")
 df_new = df4.copy()
 df_new = df_new.sort_values(by='mag', ascending=True)
 df_min= df_new.reset_index()
