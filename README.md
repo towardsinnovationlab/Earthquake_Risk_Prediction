@@ -2,7 +2,6 @@
 
 Look at the [app](https://earthquakeriskprediction.streamlit.app/) 
 
-[Earthquakes risk modelling with quantile approach](https://earthquakeriskprediction.streamlit.app/)
 
 ![](./images/natural-disaster.png)
 
