@@ -13,8 +13,8 @@ from sklearn.ensemble import IsolationForest
 from sklearn.inspection import PartialDependenceDisplay
 from feature_engine.encoding import MeanEncoder
 import streamlit as st
-import eli5
-from eli5.sklearn import PermutationImportance
+#import eli5
+#from eli5.sklearn import PermutationImportance
 
 
 import warnings
@@ -178,7 +178,7 @@ def test_metrics_model(mae_lower, mae_mean, mae_median, mae_upper,
 df = pd.read_csv('./data/train.csv',index_col=0,parse_dates=True)
 # formatting index 
 df.index = pd.to_datetime(df.index)
-# Filter data frmae with homogeneous magnitude type 
+# Filter data frame with homogeneous magnitude type 
 df1=df[df['magType']=='mb']
 # drop not more helpful variables (type, magType and magSource, because uniques)
 df2 = df1.drop(['magType','type','magSource','locationSource'], axis=1)
@@ -422,79 +422,79 @@ with the highest value in several points, seems to be coherent in every predicti
 
 # Mean Features Importance
 #st.write('GBM mean prediction Features Permutation Importance')
-GBM_perm_mean = PermutationImportance(GBM_model, random_state=0).fit(X_test, np.log1p(y_test))
+#GBM_perm_mean = PermutationImportance(GBM_model, random_state=0).fit(X_test, np.log1p(y_test))
 # Create a dataframe with feature importances and names
-FI_GBM_mean = pd.DataFrame(dict(
-    feature_names=X_test.columns.tolist(),
-    feature_importance=GBM_perm_mean.feature_importances_,
-    std=GBM_perm_mean.feature_importances_std_,
-))
+#FI_GBM_mean = pd.DataFrame(dict(
+#    feature_names=X_test.columns.tolist(),
+#    feature_importance=GBM_perm_mean.feature_importances_,
+#    std=GBM_perm_mean.feature_importances_std_,
+#))
 # Create a horizontal barplot with feature importances
-plt.rcParams['figure.figsize']=(8,8)
-fig=plt.figure()
-plt.barh(y=FI_GBM_mean["feature_names"], width=FI_GBM_mean["feature_importance"], color="red")
-plt.title("GBM mean prediction Features Permutation Importance")
-plt.xlabel("Importance")
-plt.ylabel("Feature")
+#plt.rcParams['figure.figsize']=(8,8)
+#fig=plt.figure()
+#plt.barh(y=FI_GBM_mean["feature_names"], width=FI_GBM_mean["feature_importance"], color="red")
+#plt.title("GBM mean prediction Features Permutation Importance")
+#plt.xlabel("Importance")
+#plt.ylabel("Feature")
 # Display the chart with streamlit
-st.pyplot(fig)
+#st.pyplot(fig)
 
 # Lower Features Importance
 #st.write('GBM lower prediction Features Permutation Importance')
-GBM_perm_lower = PermutationImportance(qGBM_model_lower, random_state=0).fit(X_test, np.log1p(y_test))
+#GBM_perm_lower = PermutationImportance(qGBM_model_lower, random_state=0).fit(X_test, np.log1p(y_test))
 # Create a dataframe with feature importances and names
-FI_GBM_lower = pd.DataFrame(dict(
-    feature_names=X_test.columns.tolist(),
-    feature_importance=GBM_perm_lower.feature_importances_,
-    std=GBM_perm_lower.feature_importances_std_,
-))
+#FI_GBM_lower = pd.DataFrame(dict(
+#    feature_names=X_test.columns.tolist(),
+#    feature_importance=GBM_perm_lower.feature_importances_,
+#    std=GBM_perm_lower.feature_importances_std_,
+#))
 # Create a horizontal barplot with feature importances
-plt.rcParams['figure.figsize']=(8,8)
-fig=plt.figure()
-plt.barh(y=FI_GBM_lower["feature_names"], width=FI_GBM_lower["feature_importance"], color="red")
-plt.title("GBM lower prediction Features Permutation Importance")
-plt.xlabel("Importance")
-plt.ylabel("Feature")
+#plt.rcParams['figure.figsize']=(8,8)
+#fig=plt.figure()
+#plt.barh(y=FI_GBM_lower["feature_names"], width=FI_GBM_lower["feature_importance"], color="red")
+#plt.title("GBM lower prediction Features Permutation Importance")
+#plt.xlabel("Importance")
+#plt.ylabel("Feature")
 # Display the chart with streamlit
-st.pyplot(fig)
+#st.pyplot(fig)
 
 # median Features Importance
 #st.write('GBM median prediction Features Permutation Importance')
-GBM_perm_median = PermutationImportance(qGBM_model_median, random_state=0).fit(X_test, np.log1p(y_test))
+#GBM_perm_median = PermutationImportance(qGBM_model_median, random_state=0).fit(X_test, np.log1p(y_test))
 # Create a dataframe with feature importances and names
-FI_GBM_median = pd.DataFrame(dict(
-    feature_names=X_test.columns.tolist(),
-    feature_importance=GBM_perm_median.feature_importances_,
-    std=GBM_perm_median.feature_importances_std_,
-))
+#FI_GBM_median = pd.DataFrame(dict(
+#    feature_names=X_test.columns.tolist(),
+#    feature_importance=GBM_perm_median.feature_importances_,
+#    std=GBM_perm_median.feature_importances_std_,
+#))
 # Create a horizontal barplot with feature importances
-plt.rcParams['figure.figsize']=(8,8)
-fig=plt.figure()
-plt.barh(y=FI_GBM_median["feature_names"], width=FI_GBM_median["feature_importance"], color="red")
-plt.title("GBM median prediction Features Permutation Importance")
-plt.xlabel("Importance")
-plt.ylabel("Feature")
+#plt.rcParams['figure.figsize']=(8,8)
+#fig=plt.figure()
+#plt.barh(y=FI_GBM_median["feature_names"], width=FI_GBM_median["feature_importance"], color="red")
+#plt.title("GBM median prediction Features Permutation Importance")
+#plt.xlabel("Importance")
+#plt.ylabel("Feature")
 # Display the chart with streamlit
-st.pyplot(fig)
+#st.pyplot(fig)
 
 # upper Features Importance
 #st.write('GBM upper prediction Features Permutation Importance')
-GBM_perm_upper = PermutationImportance(qGBM_model_upper, random_state=0).fit(X_test, np.log1p(y_test))
+#GBM_perm_upper = PermutationImportance(qGBM_model_upper, random_state=0).fit(X_test, np.log1p(y_test))
 # Create a dataframe with feature importances and names
-FI_GBM_upper = pd.DataFrame(dict(
-    feature_names=X_test.columns.tolist(),
-    feature_importance=GBM_perm_upper.feature_importances_,
-    std=GBM_perm_upper.feature_importances_std_,
-))
+#FI_GBM_upper = pd.DataFrame(dict(
+#    feature_names=X_test.columns.tolist(),
+#    feature_importance=GBM_perm_upper.feature_importances_,
+#    std=GBM_perm_upper.feature_importances_std_,
+#))
 # Create a horizontal barplot with feature importances
-plt.rcParams['figure.figsize']=(8,8)
-fig=plt.figure()
-plt.barh(y=FI_GBM_upper["feature_names"], width=FI_GBM_upper["feature_importance"], color="red")
-plt.title("GBM upper prediction Features Permutation Importance")
-plt.xlabel("Importance")
-plt.ylabel("Feature")
+#plt.rcParams['figure.figsize']=(8,8)
+#fig=plt.figure()
+#plt.barh(y=FI_GBM_upper["feature_names"], width=FI_GBM_upper["feature_importance"], color="red")
+#plt.title("GBM upper prediction Features Permutation Importance")
+#plt.xlabel("Importance")
+#plt.ylabel("Feature")
 # Display the chart with streamlit
-st.pyplot(fig)
+#st.pyplot(fig)
 
 st.subheader("""Partial Dependence Plot""")
 
