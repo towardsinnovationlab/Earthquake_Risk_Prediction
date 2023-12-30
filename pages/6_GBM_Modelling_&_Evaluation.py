@@ -394,19 +394,19 @@ The model seems well calibrated for the upper quantile and the median quantile, 
 At the end gradient boosting is able to capture almost all of the true values within its prediction interval.""")
 
 # Lower Quantile
-st.write("""Lower Quantile - > bad""")
+st.write("""Lower Quantile""")
 quantile_GBM_lower=(qgbm_lower_ > y_test.values).mean()
 quantile_GBM_lower
 # Median Quantile
-st.write("""Median Quantile - > good""")
+st.write("""Median Quantile""")
 percentile_GBM_median=(qgbm_median_ > y_test.values).mean()
 percentile_GBM_median
 # Upper Quantile
-st.write("""Upper Quantile - > good""")
+st.write("""Upper Quantile""")
 quantile_GBM_upper=(qgbm_upper_ > y_test.values).mean()
 quantile_GBM_upper
 # Coverage
-st.write("""Prediction Interval Coverage - > good""")
+st.write("""Prediction Interval Coverage""")
 coverage_GBM = np.logical_and(
                qgbm_lower_ < y_test.values,
                qgbm_upper_ > y_test.values).mean()
@@ -415,9 +415,9 @@ coverage_GBM
 
 st.subheader("""Feature Importance""")
 
-st.write("""In the charts are reported the permutation feature importance and we can see that depth has the degree of importance 
-with the highest value in several points, seems to be coherent in every prediction.
-""")
+#st.write("""In the charts are reported the permutation feature importance and we can see that depth has the degree of importance 
+#with the highest value in several points, seems to be coherent in every prediction.
+#""")
 
 
 # Mean Features Importance
