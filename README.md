@@ -1,6 +1,6 @@
 
 
-[here](towards.innovation.lab@gmail.com)
+[here](maito: towards.innovation.lab@gmail.com)
 
 # Earthquake_Risk_Prediction
 
