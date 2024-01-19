@@ -1,7 +1,4 @@
 
-
-[here](maito: towards.innovation.lab@gmail.com)
-
 # Earthquake_Risk_Prediction
 
 Look at the [app](https://earthquakeriskprediction.streamlit.app/) 
